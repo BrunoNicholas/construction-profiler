@@ -15,6 +15,7 @@ class CreateWorkerProfilesTable extends Migration
     {
         Schema::create('worker_profiles', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
             $table->timestamps();
         });
     }

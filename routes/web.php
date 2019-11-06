@@ -46,6 +46,7 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function
 	Route::resource('{type}/messages', 'MessageController');
 	Route::resource('departments', 'DepartmentController');
 	Route::resource('department/projects', 'ProjectController');
+	Route::resource('department/project/teams', 'TeamController');
 	Route::resource('department/questions', 'QuestionController');
 	Route::resource('department/project/posts', 'PostController');
 	Route::resource('{type}/{id}/comments', 'CommentController');

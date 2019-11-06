@@ -7,6 +7,9 @@ use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use App\Models\Project;
+use App\Models\Gallery;
+use App\Models\Image;
 
 class User extends Authenticatable implements MustVerifyEmailContract
 {
@@ -41,4 +44,34 @@ class User extends Authenticatable implements MustVerifyEmailContract
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * The relationship method for galleries.
+     *
+     * as galleries.
+     */
+    public function galleries()
+    {
+        return $this->hasMany(Gallery::class);
+    }
+
+    /**
+     * The relationship method for galleries.
+     *
+     * as galleries.
+     */
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    /**
+     * The relationship method for galleries.
+     *
+     * as galleries.
+     */
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }
