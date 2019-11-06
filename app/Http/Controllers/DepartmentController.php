@@ -8,13 +8,24 @@ use Illuminate\Http\Request;
 class DepartmentController extends Controller
 {
     /**
+     * Display the constructor of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function __construct()
+    {
+        $this->middleware('role:super-admin|admin|editor')->except('index','show');
+    }
+    
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        //
+        $departments = Department::all();
+        return view('system.departments.index', compact(['departments']));
     }
 
     /**
@@ -24,7 +35,8 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        $departments = Department::all();
+        return view('system.departments.create', compact(['departments']));
     }
 
     /**
@@ -35,7 +47,13 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'name'          => 'required',
+            'created_by'    => 'required',
+            'status'        => 'required',
+        ]);
+        Department::create($request->all());
+        return redirect()->route('departments.index')->with('success',config('app.name') .' department saved successfully!');
     }
 
     /**
@@ -44,9 +62,14 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function show(Department $department)
+    public function show($id)
     {
-        //
+        $department = Department::find($id);
+        $references = Reference::where('department_id', $id)->get();
+        if (!$department) {
+            return redirect()->route('departments.index')->with('danger', 'Department Not Found!');
+        }
+        return view('system.departments.show', compact(['department','references']));
     }
 
     /**
@@ -55,9 +78,14 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function edit(Department $department)
+    public function edit($id)
     {
-        //
+        $department = Department::find($id);
+        $departments = Department::all();
+        if (!$department) {
+            return redirect()->route('departments.index')->with('danger', 'Department Not Found!');
+        }
+        return view('system.departments.edit', compact(['department','departments']));
     }
 
     /**
@@ -67,9 +95,15 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Department $department)
+    public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'name'          => 'required',
+            'created_by'    => 'required',
+            'status'        => 'required',
+        ]);
+        Department::find($id)->update($request->all());
+        return redirect()->route('departments.index')->with('success',config('app.name') .' department updated successfully!');
     }
 
     /**
@@ -78,8 +112,10 @@ class DepartmentController extends Controller
      * @param  \App\Models\Department  $department
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Department $department)
+    public function destroy($id)
     {
-        //
+        $item = Department::find($id);
+        $item->delete();
+        return redirect()->route('departments.index')->with('danger', 'Department deleted successfully');
     }
 }

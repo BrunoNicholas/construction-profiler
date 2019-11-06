@@ -27,26 +27,22 @@
 	    <ul class="sidebar-menu" data-widget="tree">
 	        <li class="header text-center">MAIN MENU</li>
 	        <li class="active treeview menu-open">
-	          <a href="#">
-	            <i class="fa fa-home"></i> <span>Home</span>
-	            <span class="pull-right-container">
-	              <i class="fa fa-angle-left pull-right"></i>
-	            </span>
-	          </a>
-	          <ul class="treeview-menu">
-	            <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> My Dashboard</a></li>
-	            <li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-		        <li>
-		          <a href="pages/mailbox/mailbox.html">
-		            <i class="fa fa-envelope"></i> <span>Messages</span>
-		            <span class="pull-right-container">
-		              <small class="label pull-right bg-yellow">12</small>
-		              <small class="label pull-right bg-green">16</small>
-		              <small class="label pull-right bg-red">5</small>
-		            </span>
-		          </a>
-		        </li>
-	          </ul>
+		        <a href="#">
+		            <i class="fa fa-dashboard"></i> <span>START</span>
+		            <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span>
+		        </a>
+		        <ul class="treeview-menu">
+		            <li class="active"><a href="{{ route('home') }}"><i class="fa fa-home"></i> Home </a></li>
+		            @role(['super-admin','admin'])<li><a href="{{ route('userhome') }}"><i class="fa fa-user"></i> User Home </a></li>@endrole
+			        <li>
+			          <a href="{{ route('messages.index', 'inbox') }}">
+			            <i class="fa fa-envelope"></i> <span>Messages</span>
+			            <span class="pull-right-container">
+			              	<small class="label pull-right bg-green" title="Inbox">12</small>
+			            </span>
+			          </a>
+			        </li>
+		        </ul>
 	        </li>
 	        <li class="treeview">
 	          <a href="#">
@@ -62,14 +58,6 @@
 	            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
 	            <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a></li>
 	          </ul>
-	        </li>
-	        <li>
-	          <a href="pages/widgets.html">
-	            <i class="fa fa-th"></i> <span>Widgets</span>
-	            <span class="pull-right-container">
-	              <small class="label pull-right bg-green">new</small>
-	            </span>
-	          </a>
 	        </li>
 	        <li class="treeview">
 	          <a href="#">
@@ -193,7 +181,10 @@
 	        <li class="header text-center">Operations</li>
 	        <li class="text-center"><a href="{{ route('profile') }}"><i class="fa fa-gear text-yellow"></i><span>My Settings</span> </a> </li>
 	        <li class="text-center"><a href="#"><i class="fa fa-user-o text-aqua"></i><span>My Worker Profile </span> </a> </li>
-	        <li class="text-center"><a href="#"><i class="fa fa-power-off text-red"></i> <span>Logout </span> </a> </li>
+	        <li class="text-left"><a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fa fa-power-off text-red"></i> 
+	        	<span>Logout </span> </a> 
+		        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;"> @csrf </form>
+		    </li>
 	    </ul>
     </section>
     <!-- /.sidebar -->

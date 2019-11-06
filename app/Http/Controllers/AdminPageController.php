@@ -10,9 +10,18 @@ use App\User;
 
 class AdminPageController extends Controller
 {
-    $users 	= User::latest()->paginate(5);
-	$roles 	= Role::latest()->paginate(5);
-    $questions      = Question::all();
-    $departments    = Department::all();
-    return view('admin.index', compact(['users','roles','departments','questions','donations','volunteers']));
+	/**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index() 
+    {
+	    $users 	= User::latest()->paginate(5);
+		$roles 	= Role::latest()->paginate(5);
+	    $questions      = Question::latest()->paginate(20);
+	    $departments    = Department::latest()->paginate(5);
+
+	    return view('admin.index', compact(['users','roles','departments','questions']));
+	}
 }

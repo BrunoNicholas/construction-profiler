@@ -37,7 +37,13 @@ Route::group(['prefix'	=> 'admin', 'middleware'	=> ['auth']], function()
 	}
 );
 
+Route::get('/user', [
+	'as' 	=> 'userhome',
+	'uses'	=> 'HomeController@userIndex'
+]);
+
 Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function(){
+	Route::resource('{type}/messages', 'MessageController');
 	Route::resource('departments', 'DepartmentController');
 	Route::resource('department/projects', 'ProjectController');
 	Route::resource('department/questions', 'QuestionController');

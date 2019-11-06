@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Role;
+use Auth;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,19 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        if (Auth::user()->hasRole(['super-admin','admin'])) {
+            return redirect()->route('admin')->with('info','Welcome back, ' . (Role::where('name',Auth::user()->role)->first())->display_name . ' - ' . Auth::user()->name . '!');
+        }
+        return view('home')->with('info','Welcome back, ' . ' - ' . Auth::user()->name . '!'); 
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function userIndex()
+    {
+        return view('home')->with('info','Welcome back, ' . ' - ' . Auth::user()->name . '!');
     }
 }
