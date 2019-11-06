@@ -86,5 +86,5 @@ Route::group(['prefix' => 'web', 'middleware' => 'web'], function(){
 
 // test ones
 Route::get('test', function(){
-	return view('layouts.site');
+	return view('auth.nverify');
 });
