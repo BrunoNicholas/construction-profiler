@@ -19,7 +19,7 @@
         @endif
 
 		<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-			<input class="input100 @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('E-Mail Address') }}" required autofocus>
+			<input class="input100 @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('E-Mail Address') }}" value="{{ old('email') }}" required autofocus>
 			<span class="focus-input100"></span>
 			<span class="symbol-input100">
 				<i class="fa fa-envelope-o" aria-hidden="true"></i>
