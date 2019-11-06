@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('home')->with('info','Welcome back!');
 });
 
 Auth::routes(['verify' => true]);
@@ -86,5 +86,5 @@ Route::group(['prefix' => 'web', 'middleware' => 'web'], function(){
 
 // test ones
 Route::get('test', function(){
-	return view('auth.nverify');
+	return view('auth.passwords.nreset');
 });

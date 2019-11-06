@@ -22,7 +22,7 @@
 			<input class="input100 @error('email') is-invalid @enderror" type="text" name="email" placeholder="{{ __('E-Mail Address') }}" required autofocus>
 			<span class="focus-input100"></span>
 			<span class="symbol-input100">
-				<i class="fa fa-envelope" aria-hidden="true"></i>
+				<i class="fa fa-envelope-o" aria-hidden="true"></i>
 			</span>
 			@error('email')
                 <span class="invalid-feedback" role="alert">
@@ -60,16 +60,18 @@
 		</div>
 
 		<div class="text-center p-t-12">
-			<span class="txt1">
-				Forgot
-			</span>
-			<a class="txt2" href="#">
-				Username / Password?
-			</a>
+			@if (Route::has('password.request'))
+				<span class="txt1">
+					Forgot
+				</span>
+				<a class="txt2" href="{{ route('password.request') }}">
+					Your Password?
+				</a>
+			@endif
 		</div>
 
 		<div class="text-center p-t-136">
-			<a class="txt2" href="#">
+			<a class="txt2" href="{{ route('register') }}">
 				Create your Account
 				<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 			</a>
