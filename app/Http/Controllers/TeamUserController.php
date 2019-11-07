@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\WorkerProfile;
+use App\Models\TeamUser;
 use Illuminate\Http\Request;
 
-class WorkerProfileController extends Controller
+class TeamUserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,7 @@ class WorkerProfileController extends Controller
      */
     public function index()
     {
-        $profiles = WorkerProfile::latest()->paginate(20);
-        return view('system.profiles.index',compact(['profiles']));
+        //
     }
 
     /**
@@ -25,8 +24,7 @@ class WorkerProfileController extends Controller
      */
     public function create()
     {
-        $profiles = WorkerProfile::latest()->paginate(20);
-        return view('system.profiles.create',compact(['profiles']));
+        //
     }
 
     /**
@@ -43,32 +41,30 @@ class WorkerProfileController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\WorkerProfile  $workerProfile
+     * @param  \App\Models\TeamUser  $teamUser
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        $profile = WorkerProfile::find($id);
-        return view('system.profiles.show',compact(['profile']))
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\WorkerProfile  $workerProfile
+     * @param  \App\Models\TeamUser  $teamUser
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $profile = WorkerProfile::find($id);
-        return view('system.profiles.edit',compact(['profile']))
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\WorkerProfile  $workerProfile
+     * @param  \App\Models\TeamUser  $teamUser
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -79,13 +75,13 @@ class WorkerProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\WorkerProfile  $workerProfile
+     * @param  \App\Models\TeamUser  $teamUser
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        $item = WorkerProfile::find($id);
+        $item = TeamUser::find($id);
         $item->delete();
-        return redirect()->route('workprofiles.index')->with('danger', 'Worker profile deleted successfully');
+        return redirect()->route('teamusers.index')->with('danger', 'Team-user record deleted successfully');
     }
 }

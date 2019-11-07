@@ -15,7 +15,16 @@ class CreateReviewsTable extends Migration
     {
         Schema::create('reviews', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('company_id')->nullable()->unsigned()->index()->index();
+            $table->bigInteger('worker_profile_id')->nullable()->unsigned()->index()->index();
+            $table->bigInteger('user_id')->nullable()->unsigned()->index();
+            $table->text('review_message');
+            $table->string('status')->nullable()->default('pending');
             $table->timestamps();
+
+            $table->foreign('company_id')->references('id')->on('posts')->onDelete('cascade');
+            $table->foreign('worker_profile_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

@@ -50,6 +50,14 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function
 	Route::resource('department/questions', 'QuestionController');
 	Route::resource('department/project/posts', 'PostController');
 	Route::resource('{type}/{id}/comments', 'CommentController');
+	Route::resource('{type}/{id}/reviews', 'ReviewController');
+	Route::resource('{type}/{id}/ratings', 'RatingController');
+
+
+	Route::resource('user/profile/workprofiles', 'WorkerProfileController');
+	Route::resource('teams/teamusers', 'TeamUserController');
+
+
 	// closures
 	Route::get('/user/profile/settings', [
 		'as' 	=> 'settings',

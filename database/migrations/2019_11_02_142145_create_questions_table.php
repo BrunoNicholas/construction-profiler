@@ -15,7 +15,20 @@ class CreateQuestionsTable extends Migration
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('department_id')->nullable()->unsigned()->index();
+            $table->bigInteger('project_id')->nullable()->unsigned()->index();
+            $table->string('topic')->nullable()->default('No title!');
+            $table->text('description');
+            $table->bigInteger('user_id')->unsigned()->index();
+            $table->bigInteger('responder')->nullable()->unsigned()->index();
+            $table->text('response')->nullable();
+            $table->string('status')->default('pending')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('responder')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('department_id')->references('id')->on('departments')->onDelete('cascade');
+            $table->foreign('project_id')->references('id')->on('projects')->onDelete('cascade');
         });
     }
 

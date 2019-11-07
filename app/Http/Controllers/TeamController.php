@@ -14,7 +14,8 @@ class TeamController extends Controller
      */
     public function index()
     {
-        //
+        $teams = Team::latest()->paginate(20);
+        return view('system.teams.index',compact(['teams']));
     }
 
     /**
@@ -24,7 +25,8 @@ class TeamController extends Controller
      */
     public function create()
     {
-        //
+        $teams = Team::latest()->paginate(20);
+        return view('system.teams.create',compact(['teams']));
     }
 
     /**
@@ -44,9 +46,13 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function show(Team $team)
+    public function show($id)
     {
-        //
+        $team = Team::find($id);
+        if (!$team) {
+            return back()->with('danger','Team not found. It\'s either missing or deleted.');
+        }
+        return view('system.teams.show',compact(['team']));
     }
 
     /**
@@ -55,9 +61,13 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function edit(Team $team)
+    public function edit($id)
     {
-        //
+        $team = Team::find($id);
+        if (!$team) {
+            return back()->with('danger','Team not found. It\'s either missing or deleted.');
+        }
+        return view('system.teams.edit',compact(['team']));
     }
 
     /**
@@ -67,7 +77,7 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Team $team)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -78,8 +88,10 @@ class TeamController extends Controller
      * @param  \App\Models\Team  $team
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Team $team)
+    public function destroy($id)
     {
-        //
+        $item = Team::find($id);
+        $item->delete();
+        return redirect()->route('teams.index')->with('danger', 'Team deleted successfully!');
     }
 }

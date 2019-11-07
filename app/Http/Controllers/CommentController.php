@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Comment;
+use App\Models\Company;
 use App\Models\Question;
+use App\Models\Project;
 use App\Models\Post;
 use App\Models\Comment;
 use Illuminate\Http\Request;
@@ -24,6 +26,16 @@ class CommentController extends Controller
         elseif ($type == 'question') {
             $question = Question::find($id);
             $comments   = $question->comments;
+            return view('system.comments.index',compact(['comments','type','id']));
+        }
+        elseif ($type == 'company') {
+            $company = Company::find($id);
+            $comments   = $company->comments;
+            return view('system.comments.index',compact(['comments','type','id']));
+        }
+        elseif ($type == 'project') {
+            $project = Project::find($id);
+            $comments   = $project->comments;
             return view('system.comments.index',compact(['comments','type','id']));
         }
         $comments = Comment::all();

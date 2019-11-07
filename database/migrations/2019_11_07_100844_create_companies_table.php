@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateWorkerProfilesTable extends Migration
+class CreateCompaniesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,19 @@ class CreateWorkerProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::create('worker_profiles', function (Blueprint $table) {
+        Schema::create('companies', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('profile_name')->unique();
+            $table->string('company_name')->unique();
+            $table->string('company_email')->unique();
+            $table->string('company_logo')->nullable()->default('logo.jpg');
             $table->bigInteger('user_id')->nullable()->unsigned()->index();
-            $table->string('profile_category')->nullable();
-            $table->text('profile_description')->unique();
+            $table->string('company_telephone')->nullable();
+            $table->string('company_location')->nullable();
+            $table->text('company_description')->nullable();
+            $table->text('company_bio')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
-
+            
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
@@ -33,6 +37,6 @@ class CreateWorkerProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('worker_profiles');
+        Schema::dropIfExists('companies');
     }
 }

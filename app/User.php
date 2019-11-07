@@ -7,8 +7,11 @@ use Illuminate\Auth\MustVerifyEmail;
 use Illuminate\Contracts\Auth\MustVerifyEmail as MustVerifyEmailContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
+use App\Models\TeamUser;
+use App\Models\Company;
 use App\Models\Project;
 use App\Models\Gallery;
+use App\Models\Message;
 use App\Models\Image;
 
 class User extends Authenticatable implements MustVerifyEmailContract
@@ -50,9 +53,29 @@ class User extends Authenticatable implements MustVerifyEmailContract
      *
      * as galleries.
      */
+    public function companies()
+    {
+        return $this->hasMany(Company::class);
+    }
+
+    /**
+     * The relationship method for galleries.
+     *
+     * as galleries.
+     */
     public function galleries()
     {
         return $this->hasMany(Gallery::class);
+    }
+
+    /**
+     * The relationship method for galleries.
+     *
+     * as galleries.
+     */
+    public function messages()
+    {
+        return $this->hasMany(Message::class);
     }
 
     /**
@@ -66,12 +89,22 @@ class User extends Authenticatable implements MustVerifyEmailContract
     }
 
     /**
-     * The relationship method for galleries.
+     * The relationship method for projects.
      *
-     * as galleries.
+     * as projects.
      */
     public function projects()
     {
         return $this->hasMany(Project::class);
+    }
+
+    /**
+     * The relationship method for team users.
+     *
+     * as that.
+     */
+    public function team_users()
+    {
+        return $this->hasMany(TeamUser::class);
     }
 }

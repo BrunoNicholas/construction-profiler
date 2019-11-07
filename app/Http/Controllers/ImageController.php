@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Image as IntervImage;
+use File;
 
 class ImageController extends Controller
 {
@@ -80,6 +82,9 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        //
+        $item = Company::find($id);
+
+        $item->delete();
+        return redirect()->route('companies.index')->with('danger', 'Company deleted successfully');
     }
 }

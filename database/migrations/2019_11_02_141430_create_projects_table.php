@@ -18,8 +18,8 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->bigInteger('user_id')->unsigned()->index();
             $table->bigInteger('department')->nullable()->unsigned()->index();
-            $table->string('description_image')->nullable();
-            $table->bigInteger('team_id')->nullable()->unsigned()->index();
+            $table->string('description_image')->nullable()->default('photo.jpg');
+            // $table->bigInteger('team_id')->nullable()->unsigned()->index();
             $table->string('estimated_period')->nullable();
             $table->date('start_date');
             $table->date('end_date')->nullable();

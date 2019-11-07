@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Image as IntervImage;
+use File;
 
 class GalleryController extends Controller
 {

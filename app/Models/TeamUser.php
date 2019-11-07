@@ -3,11 +3,10 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use App\Models\TeamUser;
-use App\Models\Project;
+use App\Models\Team;
 use App\User;
 
-class Team extends Model
+class TeamUser extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -15,11 +14,8 @@ class Team extends Model
      * @var array
      */
     protected $fillable = [
-        'team_name',
+        'team_id',
         'user_id',
-        'project_id',
-        'team_description',
-        'status',
     ];
 
     /**
@@ -34,18 +30,18 @@ class Team extends Model
      * the user table and the books table
      *
      */
-    public function projects()
+    public function teams()
     {
-        return $this->belongsTo(Project::class);
+        return $this->belongsTo(Team::class);
     }
 
     /**
-     * The relationship method for comments.
+     * Belonds to relationship connects both 
+     * the user table and the books table
      *
-     * as comments.
      */
-    public function team_users()
+    public function users()
     {
-        return $this->hasMany(TeamUser::class);
+        return $this->belongsTo(User::class);
     }
 }
