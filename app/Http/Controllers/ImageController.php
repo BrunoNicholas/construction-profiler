@@ -37,7 +37,14 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'image'  => 'required',
+            'user_id'       => 'required',
+        ]);
+
+        Image::create($request->all());
+
+        return route('images.index')->with('success','Image saved successfully!');
     }
 
     /**

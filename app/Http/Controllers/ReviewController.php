@@ -35,7 +35,13 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'review_message'  => 'required',
+        ]);
+
+        Review::create($request->all());
+
+        return back()->with('success','Review saved successfully!');
     }
 
     /**
@@ -80,8 +86,8 @@ class ReviewController extends Controller
      */
     public function destroy($id)
     {
-        $item = Team::find($id);
+        $item = Review::find($id);
         $item->delete();
-        return redirect()->route('teams.index')->with('danger', 'Team deleted successfully!');
+        return back()->('reviews.index')->with('danger', 'Reviews deleted successfully!');
     }
 }

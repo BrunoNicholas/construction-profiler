@@ -18,7 +18,7 @@ class CreateWorkerProfilesTable extends Migration
             $table->string('profile_name')->unique();
             $table->bigInteger('user_id')->nullable()->unsigned()->index();
             $table->string('profile_category')->nullable();
-            $table->text('profile_description')->unique();
+            $table->text('profile_description')->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
 

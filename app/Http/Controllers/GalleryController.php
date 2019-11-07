@@ -10,6 +10,16 @@ use File;
 class GalleryController extends Controller
 {
     /**
+     * Display the constructor of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function __construct()
+    {
+        // $this->middleware('role:super-admin|admin|patron|chaiperson|cu-leader|editor')->except('index','show','album');
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -42,7 +52,33 @@ class GalleryController extends Controller
             'user_id'   => 'required',
             'status'    => 'required',
         ]);
-        Gallery::create($request->all());
+
+        $gallery_item = new Gallery();
+        
+        // if ($request->hasFile('image')) {
+        if ($request->file('image')->isValid()) {
+            $fileWithExtension = $request->file('image')->getClientOriginalName();
+            $fileWithoutExtension = pathinfo($fileWithExtension, PATHINFO_FILENAME);
+
+            $user_image = $request->file('image');
+            $filename = $fileWithoutExtension . '_' .time() . '.' . $user_image->getClientOriginalExtension();
+
+            Image::make($user_image)->save( public_path('/files/storage/gallery/' . $filename) );
+            // $path = $request->file('image')->storeAs('public/gallery/', $filename);
+
+            $gallery_item->image = $filename;
+        }
+
+        $gallery_item->gallery_name = $request->gallery_name;
+        $gallery_item->description  = $request->description;
+        $gallery_item->gallery_id = $request->gallery_id;
+        $gallery_item->caption  = $request->caption;
+        $gallery_item->title    = $request->title;
+        $gallery_item->size     = $request->size;
+        $gallery_item->user_id = $request->user_id;
+        $gallery_item->status = $request->status;
+        $gallery_item->save();
+
         return back()->with('success','Gallery saved successfully!');
     }
     /**
@@ -81,7 +117,33 @@ class GalleryController extends Controller
             'user_id'   => 'required',
             'status'    => 'required',
         ]);
-        Gallery::find($id)->update($request->all());
+        
+        $gallery_item = Gallery::find($id);
+        
+        // if ($request->hasFile('image')) {
+        if ($request->file('image')->isValid()) {
+            $fileWithExtension = $request->file('image')->getClientOriginalName();
+            $fileWithoutExtension = pathinfo($fileWithExtension, PATHINFO_FILENAME);
+
+            $user_image = $request->file('image');
+            $filename = $fileWithoutExtension . '_' .time() . '.' . $user_image->getClientOriginalExtension();
+
+            Image::make($user_image)->save( public_path('/files/storage/gallery/' . $filename) );
+            // $path = $request->file('image')->storeAs('public/gallery/', $filename);
+
+            $gallery_item->image = $filename;
+        }
+
+        $gallery_item->gallery_name = $request->gallery_name;
+        $gallery_item->description  = $request->description;
+        $gallery_item->gallery_id = $request->gallery_id;
+        $gallery_item->caption  = $request->caption;
+        $gallery_item->title    = $request->title;
+        $gallery_item->size     = $request->size;
+        $gallery_item->user_id = $request->user_id;
+        $gallery_item->status = $request->status;
+        $gallery_item->save();
+
         return redirect()->route('galleries')->with('success','Gallery saved successfully!');
     }
     /**

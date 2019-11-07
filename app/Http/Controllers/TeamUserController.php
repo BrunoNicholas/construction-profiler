@@ -20,6 +20,7 @@ class TeamUserController extends Controller
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \App\Models\WorkerProfile  $worker
      * @return \Illuminate\Http\Response
      */
     public function create()
@@ -35,7 +36,13 @@ class TeamUserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'user_id'   => 'required',
+            'team_id'   => 'required',
+        ]);
+        TeamUser::create($request->all());
+
+        return back()->with('success','User added to the team successfully!');
     }
 
     /**

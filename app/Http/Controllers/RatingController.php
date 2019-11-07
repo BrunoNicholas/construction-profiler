@@ -35,7 +35,12 @@ class RatingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'rate_number'  => 'required',
+        ]);
+        Rating::create($request->all());
+
+        return back()->with('success','Thanks for rating successfully!');
     }
 
     /**
@@ -80,6 +85,8 @@ class RatingController extends Controller
      */
     public function destroy(Rating $rating)
     {
-        //
+        $item = Review::find($id);
+        $item->delete();
+        return back()->with('danger', 'Reviews deleted successfully!');
     }
 }

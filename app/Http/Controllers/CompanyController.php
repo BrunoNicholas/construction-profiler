@@ -48,7 +48,11 @@ class CompanyController extends Controller
      */
     public function show($id)
     {
-        //
+        $company = Company::find($id);
+        if (!$company) {
+            return back()->with('danger','Company not found. It\'s missing or deleted.');
+        }
+        return view('system.companies.show',compact(['company']));
     }
 
     /**
@@ -59,7 +63,11 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $company = Company::find($id);
+        if (!$company) {
+            return back()->with('danger','Company not found. It\'s missing or deleted.');
+        }
+        return view('system.companies.edit',compact(['company']));
     }
 
     /**

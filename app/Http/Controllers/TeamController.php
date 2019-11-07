@@ -37,7 +37,15 @@ class TeamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+            'project_id'  => 'required',
+            'user_id'       => 'required',
+            'status'        => 'required',
+        ]);
+
+        Team::create($request->all());
+
+        return route('teams.index')->with('success','Team saved successfully!');
     }
 
     /**
