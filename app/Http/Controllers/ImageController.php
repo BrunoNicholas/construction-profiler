@@ -41,10 +41,37 @@ class ImageController extends Controller
             'image'  => 'required',
             'user_id'       => 'required',
         ]);
+        
+        $gallery_item = Image::find($id);
+        
+        // if ($request->hasFile('image')) {
+        if ($request->file('image')->isValid()) {
+            $fileWithExtension = $request->file('image')->getClientOriginalName();
+            $fileWithoutExtension = pathinfo($fileWithExtension, PATHINFO_FILENAME);
 
-        Image::create($request->all());
+            $user_image = $request->file('image');
+            $filename = $fileWithoutExtension . '_' .time() . '.' . $user_image->getClientOriginalExtension();
 
-        return route('images.index')->with('success','Image saved successfully!');
+            Image::make($user_image)->save( public_path('/files/storage/images/' . $filename) );
+            // $path = $request->file('image')->storeAs('public/gallery/', $filename);
+
+            $gallery_item->image = $filename;
+
+            $gallery_item->gallery_name = $request->gallery_name;
+            $gallery_item->description  = $request->description;
+            $gallery_item->gallery_id = $request->gallery_id;
+            $gallery_item->caption  = $request->caption;
+            $gallery_item->title    = $request->title;
+            $gallery_item->size     = $request->size;
+            $gallery_item->user_id = $request->user_id;
+            $gallery_item->status = $request->status;
+            $gallery_item->save();
+        } else
+        {
+            return back('danger','Looks like no image was uploaded!');
+        }
+
+        return redirect()->route('images.index')->with('success','Image saved successfully!');
     }
 
     /**
@@ -55,7 +82,11 @@ class ImageController extends Controller
      */
     public function show(Image $image)
     {
-        //
+        $image = Image::find($id);
+        if (!$image) {
+            return back()->with('danger','image not found. It\'s either missing or deleted.');
+        }
+        return view('system.images.show', compact(['image']));
     }
 
     /**
@@ -66,7 +97,11 @@ class ImageController extends Controller
      */
     public function edit(Image $image)
     {
-        //
+        $image = Image::find($id);
+        if (!$image) {
+            return back()->with('danger','image not found. It\'s either missing or deleted.');
+        }
+        return view('system.images.show', compact(['image']));
     }
 
     /**
@@ -78,7 +113,39 @@ class ImageController extends Controller
      */
     public function update(Request $request, Image $image)
     {
-        //
+        request()->validate([
+            'user_id'       => 'required',
+        ]);
+        
+        $gallery_item = Image::find($id);
+        
+        // if ($request->hasFile('image')) {
+        if ($request->file('image')->isValid()) {
+
+            $fileWithExtension = $request->file('image')->getClientOriginalName();
+            $fileWithoutExtension = pathinfo($fileWithExtension, PATHINFO_FILENAME);
+
+            $user_image = $request->file('image');
+            $filename = $fileWithoutExtension . '_' .time() . '.' . $user_image->getClientOriginalExtension();
+
+            Image::make($user_image)->save( public_path('/files/storage/images/' . $filename) );
+            // $path = $request->file('image')->storeAs('public/gallery/', $filename);
+
+            $gallery_item->image = $filename;
+
+            $gallery_item->gallery_name = $request->gallery_name;
+            $gallery_item->description  = $request->description;
+            $gallery_item->gallery_id = $request->gallery_id;
+            $gallery_item->caption  = $request->caption;
+            $gallery_item->title    = $request->title;
+            $gallery_item->size     = $request->size;
+            $gallery_item->user_id = $request->user_id;
+            $gallery_item->status = $request->status;
+            $gallery_item->save();
+        } else
+        {
+            return back('danger','Looks like no image was uploaded!');
+        }
     }
 
     /**
@@ -89,7 +156,11 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        $item = Company::find($id);
+        $item = Image::find($id);
+        // delete old image
+        
+        $pathToImage = public_path('files/profile/images/').$item->image;
+        File::delete($pathToImage);
 
         $item->delete();
         return redirect()->route('companies.index')->with('danger', 'Company deleted successfully');

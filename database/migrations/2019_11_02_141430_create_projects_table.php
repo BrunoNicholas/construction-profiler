@@ -19,7 +19,6 @@ class CreateProjectsTable extends Migration
             $table->bigInteger('user_id')->unsigned()->index();
             $table->bigInteger('department')->nullable()->unsigned()->index();
             $table->string('description_image')->nullable()->default('photo.jpg');
-            // $table->bigInteger('team_id')->nullable()->unsigned()->index();
             $table->string('estimated_period')->nullable();
             $table->date('start_date');
             $table->date('end_date')->nullable();
@@ -29,7 +28,6 @@ class CreateProjectsTable extends Migration
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('department')->references('id')->on('departments')->onDelete('cascade');
-            $table->foreign('team_id')->references('id')->on('teams')->onDelete('cascade');
         });
     }
 

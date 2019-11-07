@@ -45,7 +45,7 @@ class TeamController extends Controller
 
         Team::create($request->all());
 
-        return route('teams.index')->with('success','Team saved successfully!');
+        return redirect()->route('teams.index')->with('success','Team saved successfully!');
     }
 
     /**
@@ -87,7 +87,14 @@ class TeamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'project_id'  => 'required',
+            'user_id'       => 'required',
+            'status'        => 'required',
+        ]);
+
+        Team::find($id)->update($request->all());
+        return redirect()->route('teams.index')->with('success','Team saved successfully!');
     }
 
     /**

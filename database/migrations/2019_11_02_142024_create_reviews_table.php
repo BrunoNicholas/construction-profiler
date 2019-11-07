@@ -22,8 +22,8 @@ class CreateReviewsTable extends Migration
             $table->string('status')->nullable()->default('pending');
             $table->timestamps();
 
-            $table->foreign('company_id')->references('id')->on('posts')->onDelete('cascade');
-            $table->foreign('worker_profile_id')->references('id')->on('questions')->onDelete('cascade');
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->foreign('worker_profile_id')->references('id')->on('worker_profiles')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

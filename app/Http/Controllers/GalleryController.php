@@ -53,7 +53,7 @@ class GalleryController extends Controller
             'status'    => 'required',
         ]);
 
-        $gallery_item = new Gallery();
+        $image_item = new Gallery();
         
         // if ($request->hasFile('image')) {
         if ($request->file('image')->isValid()) {
@@ -63,21 +63,17 @@ class GalleryController extends Controller
             $user_image = $request->file('image');
             $filename = $fileWithoutExtension . '_' .time() . '.' . $user_image->getClientOriginalExtension();
 
-            Image::make($user_image)->save( public_path('/files/storage/gallery/' . $filename) );
+            Image::make($user_image)->save( public_path('/files/storage/images/' . $filename) );
             // $path = $request->file('image')->storeAs('public/gallery/', $filename);
 
-            $gallery_item->image = $filename;
+            $image_item->image = $filename;
         }
 
-        $gallery_item->gallery_name = $request->gallery_name;
-        $gallery_item->description  = $request->description;
-        $gallery_item->gallery_id = $request->gallery_id;
-        $gallery_item->caption  = $request->caption;
-        $gallery_item->title    = $request->title;
-        $gallery_item->size     = $request->size;
-        $gallery_item->user_id = $request->user_id;
-        $gallery_item->status = $request->status;
-        $gallery_item->save();
+        $image_item->gallery_id = $request->gallery_id;
+        $image_item->caption    = $request->caption;
+        $image_item->user_id    = $request->user_id;
+        $image_item->title      = $request->title;
+        $image_item->save();
 
         return back()->with('success','Gallery saved successfully!');
     }
@@ -144,7 +140,7 @@ class GalleryController extends Controller
         $gallery_item->status = $request->status;
         $gallery_item->save();
 
-        return redirect()->route('galleries')->with('success','Gallery saved successfully!');
+        return redirect()->route('galleries.index')->with('success','Gallery saved successfully!');
     }
     /**
      * Remove the specified resource from storage.
@@ -155,6 +151,10 @@ class GalleryController extends Controller
     public function destroy($id)
     {
         $item = Gallery::find($id);
+
+        $pathToImage = public_path('files/profile/gallery/').$item->image;
+        File::delete($pathToImage);
+
         $item->delete();
         return redirect()->route('galleries.index')->with('danger', 'Gallery deleted successfully!');
     }

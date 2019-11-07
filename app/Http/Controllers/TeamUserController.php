@@ -76,7 +76,13 @@ class TeamUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'user_id'   => 'required',
+            'team_id'   => 'required',
+        ]);
+        TeamUser::find($id)->update($request->all());
+
+        return back()->with('success','User-team record updated to the team successfully!');
     }
 
     /**
