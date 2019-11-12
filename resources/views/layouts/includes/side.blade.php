@@ -38,7 +38,7 @@
 			          <a href="{{ route('messages.index', 'inbox') }}">
 			            <i class="fa fa-envelope"></i> <span>Messages</span>
 			            <span class="pull-right-container">
-			              	<small class="label pull-right bg-green" title="Inbox">12</small>
+			              	<small class="label pull-right bg-green" title="Inbox">0</small>
 			            </span>
 			          </a>
 			        </li>
@@ -53,130 +53,74 @@
 	            </span>
 	          </a>
 	          <ul class="treeview-menu">
-	            <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> View Projects </a></li>
-	            <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> My Projects </a></li>
-	            <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> Add Projects </a></li>
+	            <li><a href="{{ route('projects.index') }}"><i class="fa fa-circle-o"></i> View Projects </a></li>
+	            <li><a href="{{ route('projects.index') }}"><i class="fa fa-circle-o"></i> My Projects </a></li>
+	            <li><a href="{{ route('projects.create') }}"><i class="fa fa-circle-o"></i> Add Projects </a></li>
 	          </ul>
 	        </li>
 	        <li class="treeview">
 	          <a href="#">
 	            <i class="fa fa-pie-chart"></i>
-	            <span>Charts</span>
+	            <span>Companies</span>
 	            <span class="pull-right-container">
 	              <i class="fa fa-angle-left pull-right"></i>
 	            </span>
 	          </a>
 	          <ul class="treeview-menu">
-	            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-	            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-	            <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-	            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+	            <li><a href="{{ route('companies.index') }}"><i class="fa fa-circle-o"></i> View All Companiews </a></li>
+	            <li><a href="{{ route('companies.index') }}"><i class="fa fa-circle-o"></i> My Companies </a></li>
 	          </ul>
 	        </li>
 	        <li class="treeview">
 	          <a href="#">
-	            <i class="fa fa-laptop"></i>
-	            <span>UI Elements</span>
+	            <i class="fa fa-folder"></i> <span>My Gallery</span>
 	            <span class="pull-right-container">
 	              <i class="fa fa-angle-left pull-right"></i>
 	            </span>
 	          </a>
 	          <ul class="treeview-menu">
-	            <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> General</a></li>
-	            <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> Icons</a></li>
-	            <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> Buttons</a></li>
-	            <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> Sliders</a></li>
-	            <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> Timeline</a></li>
-	            <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> Modals</a></li>
+	            <li><a href="{{ route('galleries.index') }}"><i class="fa fa-circle-o"></i> My Galleries</a></li>
+	            <li><a href="{{ route('images.index') }}"><i class="fa fa-circle-o"></i> My Images </a></li>
+	            <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Attachments</a></li>
 	          </ul>
 	        </li>
 	        <li class="treeview">
 	          <a href="#">
-	            <i class="fa fa-edit"></i> <span>Forms</span>
+	            <i class="fa fa-table"></i> <span>Worker Profiles</span>
 	            <span class="pull-right-container">
 	              <i class="fa fa-angle-left pull-right"></i>
 	            </span>
 	          </a>
 	          <ul class="treeview-menu">
-	            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> General Elements</a></li>
-	            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-	            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+	            <li><a href="{{ route('profiles.index') }}"><i class="fa fa-circle-o"></i> View Worker Profiles</a></li>
 	          </ul>
 	        </li>
 	        <li class="treeview">
 	          <a href="#">
-	            <i class="fa fa-table"></i> <span>Tables</span>
+	            <i class="fa fa-edit"></i> <span>Posts & Questions</span>
 	            <span class="pull-right-container">
 	              <i class="fa fa-angle-left pull-right"></i>
 	            </span>
 	          </a>
 	          <ul class="treeview-menu">
-	            <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> Simple tables</a></li>
-	            <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> Data tables</a></li>
-	          </ul>
-	        </li>
-	        <li>
-	          <a href="pages/calendar.html">
-	            <i class="fa fa-calendar"></i> <span>Calendar</span>
-	            <span class="pull-right-container">
-	              <small class="label pull-right bg-red">3</small>
-	              <small class="label pull-right bg-blue">17</small>
-	            </span>
-	          </a>
-	        </li>
-	        <li class="treeview">
-	          <a href="#">
-	            <i class="fa fa-folder"></i> <span>Examples</span>
-	            <span class="pull-right-container">
-	              <i class="fa fa-angle-left pull-right"></i>
-	            </span>
-	          </a>
-	          <ul class="treeview-menu">
-	            <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-	            <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-	            <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-	            <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-	            <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-	            <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-	            <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-	            <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> Blank Page</a></li>
-	            <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
+	            <li><a href="{{ route('posts.index') }}"><i class="fa fa-circle-o"></i> View Posts</a></li>
+	            <li><a href="{{ route('questions.index') }}"><i class="fa fa-circle-o"></i> Questions </a></li>
+	            <li><a href="{{ route('questions.create') }}"><i class="fa fa-circle-o"></i> Ask Question</a></li>
 	          </ul>
 	        </li>
 	        <li class="treeview">
 	          <a href="#">
-	            <i class="fa fa-share"></i> <span>Multilevel</span>
+	            <i class="fa fa-share"></i> <span> Shortcuts</span>
 	            <span class="pull-right-container">
 	              <i class="fa fa-angle-left pull-right"></i>
 	            </span>
 	          </a>
 	          <ul class="treeview-menu">
-	            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-	            <li class="treeview">
-	              <a href="#"><i class="fa fa-circle-o"></i> Level One
-	                <span class="pull-right-container">
-	                  <i class="fa fa-angle-left pull-right"></i>
-	                </span>
-	              </a>
-	              <ul class="treeview-menu">
-	                <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-	                <li class="treeview">
-	                  <a href="#"><i class="fa fa-circle-o"></i> Level Two
-	                    <span class="pull-right-container">
-	                      <i class="fa fa-angle-left pull-right"></i>
-	                    </span>
-	                  </a>
-	                  <ul class="treeview-menu">
-	                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-	                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-	                  </ul>
-	                </li>
-	              </ul>
-	            </li>
-	            <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
+	            <li><a href="{{ route('questions.create') }}"><i class="fa fa-circle-o"></i> Ask A Question</a></li>
+	            <li><a href="{{ route('posts.create') }}"><i class="fa fa-circle-o"></i> Add Post</a></li>
+	            <li><a href="{{ route('projects.create') }}"><i class="fa fa-circle-o"></i> Add Project</a></li>
 	          </ul>
 	        </li>
-	        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
 	        <li class="header text-center">Operations</li>
 	        <li class="text-center"><a href="{{ route('profile') }}"><i class="fa fa-gear text-yellow"></i><span>My Settings</span> </a> </li>
 	        <li class="text-center"><a href="#"><i class="fa fa-user-o text-aqua"></i><span>My Worker Profile </span> </a> </li>
