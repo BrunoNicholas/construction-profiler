@@ -1,0 +1,19 @@
+@extends('layouts.site')
+
+@section('title') New User @endsection
+@section('styles', '') 
+@section('page-tree')
+    <h1> Add New User <small> Create an new user profile!</small></h1>
+    <ol class="breadcrumb">
+    	<li><a href="{{ route('userhome') }}"><i class="fa fa-home text-primary"></i>Home</a></li>
+    	<li><a href="{{ route('admin') }}"><i class="fa fa-dashboard text-primary"></i>Administrator</a></li>
+    	<li><a href="{{ route('users.index') }}"><i class="fa fa-users text-primary"></i>Users</a></li>
+        <li class="active"><a href="javascript:void(0)"><i class="fa fa-user-plus"></i> Add User</a></li>
+    </ol>
+@endsection
+@section('content')
+
+@endsection
+@section('scripts')
+
+@endsection
