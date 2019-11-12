@@ -1,9 +1,9 @@
 @extends('layouts.site')
 
-@section('title') Edit Role @endsection
+@section('title') view Role @endsection
 @section('styles', '') 
 @section('page-tree')
-    <h1> Edit User Role <small> Edit user categories and previleges!</small></h1>
+    <h1> view User Role <small> view user role category and previleges!</small></h1>
     <ol class="breadcrumb">
     	<li><a href="{{ route('userhome') }}"><i class="fa fa-home text-primary"></i>Home</a></li>
     	<li><a href="{{ route('admin') }}"><i class="fa fa-dashboard text-primary"></i>Administrator</a></li>
