@@ -58,7 +58,7 @@ class WorkerProfileController extends Controller
         if (!$profile) {
             return back()->with('danger','Worker profile not found. It\'s either missing or deleted.' );
         }
-        return view('system.profiles.show',compact(['profile']))
+        return view('system.profiles.show',compact(['profile']));
     }
 
     /**
@@ -73,7 +73,7 @@ class WorkerProfileController extends Controller
         if (!$profile) {
             return back()->with('danger','Worker profile not found. It\'s either missing or deleted.' );
         }
-        return view('system.profiles.edit',compact(['profile']))
+        return view('system.profiles.edit',compact(['profile']));
     }
 
     /**

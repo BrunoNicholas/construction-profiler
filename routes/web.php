@@ -45,6 +45,7 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function
 
 	Route::resource('companies', 'CompanyController');
 	Route::resource('user/profile/workprofiles', 'WorkerProfileController');
+	Route::resource('user/profile/profiles', 'WorkerProfileController');
 	Route::resource('user/profile/images', 'ImageController');
 	Route::resource('user/profile/galleries', 'GalleryController');
 	Route::resource('teams/teamusers', 'TeamUserController');

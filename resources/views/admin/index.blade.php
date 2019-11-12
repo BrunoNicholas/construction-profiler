@@ -45,7 +45,7 @@
 
       {{-- for worker profiles --}}
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
+        <div class="info-box" onclick="window.location='{{ route('profiles.index') }}'">
           <span class="info-box-icon bg-green"><i class="ion ion-person-stalker"></i></span>
 
           <div class="info-box-content">
@@ -58,7 +58,7 @@
       </div>
       <!-- /.col -->
       <div class="col-md-3 col-sm-6 col-xs-12">
-        <div class="info-box">
+        <div class="info-box" onclick="window.location='{{ route('projects.index') }}'">
           <span class="info-box-icon bg-yellow"><i class="ion ion-clipboard"></i></span>
 
           <div class="info-box-content">
