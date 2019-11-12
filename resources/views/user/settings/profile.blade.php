@@ -19,20 +19,17 @@
                   <h3 class="profile-username text-center">{{ Auth::user()->name }}<br><small><i>{{ Auth::user()->email }}</i></small> </h3>
 
                   <p class="text-muted text-center">{{ Auth::user()->occupation }}</p>
-
-                  <ul class="list-group list-group-unbordered">
-                    <li class="list-group-item">
-                      <b>Followers</b> <a class="pull-right">1,322</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>Following</b> <a class="pull-right">543</a>
-                    </li>
-                    <li class="list-group-item">
-                      <b>Friends</b> <a class="pull-right">13,287</a>
-                    </li>
-                  </ul>
-
-                  <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                  <form enctype="multipart/form-data" action="{{ route('profile.update') }}" method="POST">
+                    @csrf
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    <ul class="list-group list-group-unbordered">
+                      <li class="list-group-item">
+                        <input type="file" class="btn btn-sm" name="profile_image" accept=".jpg, .png, .jpeg" class="pull-left">
+                      </li>
+                    </ul>
+                    
+                    <button type="submit" class="btn btn-primary btn-block" ><i class="fa fa-done"></i> UPDATE IMAGE</button>
+                  </form>
               </div>
               <!-- /.box-body -->
           </div>
