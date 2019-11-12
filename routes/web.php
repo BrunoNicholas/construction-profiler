@@ -36,7 +36,7 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function
 	Route::resource('departments', 'DepartmentController');
 	Route::resource('department/projects', 'ProjectController');
 	Route::resource('department/project/teams', 'TeamController');
-	Route::resource('department/questions', 'QuestionController');
+	Route::resource('department/project/questions', 'QuestionController');
 	Route::resource('department/project/posts', 'PostController');
 	Route::resource('{type}/{id}/comments', 'CommentController');
 	Route::resource('{type}/{id}/reviews', 'ReviewController');
@@ -45,8 +45,8 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function
 
 	Route::resource('companies', 'CompanyController');
 	Route::resource('user/profile/workprofiles', 'WorkerProfileController');
-	Route::resource('user/profile/profiles', 'WorkerProfileController');
-	Route::resource('user/profile/images', 'ImageController');
+	Route::resource('user/departments/projects/profiles', 'WorkerProfileController');
+	Route::resource('user/profile/gallery/images', 'ImageController');
 	Route::resource('user/profile/galleries', 'GalleryController');
 	Route::resource('teams/teamusers', 'TeamUserController');
 

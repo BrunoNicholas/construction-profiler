@@ -16,7 +16,8 @@ class ImageController extends Controller
      */
     public function index()
     {
-        //
+        $images = Image::latest()->paginate(20);
+        return view('system.images.index',compact(['images']));
     }
 
     /**
@@ -26,7 +27,8 @@ class ImageController extends Controller
      */
     public function create()
     {
-        //
+        $images = Image::latest()->paginate(20);
+        return view('system.images.create',compact(['images']));
     }
 
     /**
@@ -80,7 +82,7 @@ class ImageController extends Controller
      * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function show(Image $image)
+    public function show($id)
     {
         $image = Image::find($id);
         if (!$image) {
@@ -95,7 +97,7 @@ class ImageController extends Controller
      * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function edit(Image $image)
+    public function edit($id)
     {
         $image = Image::find($id);
         if (!$image) {
@@ -111,7 +113,7 @@ class ImageController extends Controller
      * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Image $image)
+    public function update(Request $request, $id)
     {
         request()->validate([
             'user_id'       => 'required',
@@ -154,7 +156,7 @@ class ImageController extends Controller
      * @param  \App\Models\Image  $image
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Image $image)
+    public function destroy($id)
     {
         $item = Image::find($id);
         // delete old image

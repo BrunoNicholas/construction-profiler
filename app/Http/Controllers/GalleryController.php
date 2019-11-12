@@ -86,6 +86,9 @@ class GalleryController extends Controller
     public function show($id)
     {
         $gallery = Gallery::find($id);
+        if (!$gallery) {
+            return back()->with('danger', 'Gallery not found. It is either missing or deleted.');
+        }
         return view('system.galleries.show', compact(['gallery']));
     }
     /**
@@ -97,6 +100,9 @@ class GalleryController extends Controller
     public function edit($id)
     {
         $gallery = Gallery::find($id);
+        if (!$gallery) {
+            return back()->with('danger', 'Gallery not found. It is either missing or deleted.');
+        }
         return view('system.galleries.edit', compact(['gallery']));
     }
     /**

@@ -1,0 +1,20 @@
+@extends('layouts.site')
+
+@section('title') View Worker Profile @endsection
+@section('styles', '') 
+@section('page-tree')
+    <h1> View Worker Profile <small> View, worker profile.</small></h1>
+    <ol class="breadcrumb">
+    	<li><a href="{{ route('userhome') }}"><i class="fa fa-home text-primary"></i>Home</a></li>
+    	<li><a href="{{ route('departments.index') }}"><i class="fa fa-tree text-primary"></i>Departments</a></li>
+    	<li><a href="{{ route('projects.index') }}"><i class="fa fa-list text-primary"></i>Projects</a></li>
+    	<li><a href="{{ route('profiles.index') }}"><i class="fa fa-home text-primary"></i>Worker Profiles</a></li>
+        <li class="active"><a href="javascript:void(0)"><i class="fa fa-user-plus"></i> View Profiles </a></li>
+    </ol>
+@endsection
+@section('content')
+
+@endsection
+@section('scripts')
+
+@endsection

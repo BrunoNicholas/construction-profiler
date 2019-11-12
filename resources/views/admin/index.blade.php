@@ -180,7 +180,7 @@
                   </div>
                   <div class="card">
                     <div class="card-body" style="padding: 8px;">
-                      <a href="{{ route('roles.index') }}"><button class="btn btn-info btn-sm pull-right" style="min-width: 130px; margin: 2px;"><i class="fa fa-list"></i> Details</button></a>
+                      <a href="{{ route('roles.index') }}"><button class="btn btn-danger btn-sm pull-right" style="min-width: 130px; margin: 2px;"><i class="fa fa-list"></i> Details</button></a>
                       <a href="{{ route('roles.create') }}"><button class="btn btn-primary btn-sm pull-right" style="min-width: 130px; margin: 2px;"><i class="fa fa-plus"></i> Add New</button></a>
                     </div>
                   </div>
@@ -237,7 +237,7 @@
                   </div>
                   <div class="card">
                     <div class="card-body" style="padding: 8px;">
-                      <a href="{{ route('departments.index') }}"><button class="btn btn-info btn-sm pull-right" style="min-width: 130px; margin: 2px;"><i class="fa fa-list"></i> Details</button></a>
+                      <a href="{{ route('departments.index') }}"><button class="btn btn-success btn-sm pull-right" style="min-width: 130px; margin: 2px;"><i class="fa fa-list"></i> Details</button></a>
                       <a href="{{ route('departments.create') }}"><button class="btn btn-primary btn-sm pull-right" style="min-width: 130px; margin: 2px;"><i class="fa fa-plus"></i> Add New</button></a>
                     </div>
                   </div>
