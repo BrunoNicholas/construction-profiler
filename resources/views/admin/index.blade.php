@@ -2,7 +2,7 @@
 
 @section('title') Administrator @endsection
 @section('page-tree')
-	  <h1> Administrator <small>{{ Auth::user()->name }}</small></h1>
+	  <h1> Administrator <small>{{ Auth::user()->name }} - {{ App\Models\Role::where('name',Auth::user()->role)->first()->display_name }}</small></h1>
     <ol class="breadcrumb">
         <li><a href="{{ route('userhome') }}"><i class="ion ion-ios-people-outline"></i> Home</a></li>
         <li class="active"><i class="fa fa-user-plus"></i> Administrator</li>
@@ -34,13 +34,9 @@
             <span class="info-box-text">Company Profiles</span>
             <span class="info-box-number">{{ App\Models\Company::where('status','active')->get()->count() }} Active<br><small>Total {{ $companies->count() }}</small></span>
           </div>
-          <!-- /.info-box-content -->
         </div>
-        <!-- /.info-box -->
       </div>
-      <!-- /.col -->
 
-      <!-- fix for small devices only -->
       <div class="clearfix visible-sm-block"></div>
 
       {{-- for worker profiles --}}
@@ -78,6 +74,7 @@
           <ul class="nav nav-tabs pull-right">
             <li class="active"><a href="#urevenue-chart" data-toggle="tab"> System Users</a></li>
             <li><a href="#sales-chart" data-toggle="tab">System Roles</a></li>
+            <li><a href="#departments" data-toggle="tab">Departments</a></li>
             <li class="pull-left header"><i class="fa fa-tree"></i></li>
           </ul>
           <div class="tab-content no-padding">
@@ -154,7 +151,7 @@
                       <h4>System Roles</h4>
                     </div>
                     <div class="card-body">
-                      <table  id="example2" class="table table-bordered table-striped">
+                      <table  id="example1" class="table table-bordered table-striped">
                         <thead>
                           <tr>
                             <th>#</th>
@@ -185,6 +182,63 @@
                     <div class="card-body" style="padding: 8px;">
                       <a href="{{ route('roles.index') }}"><button class="btn btn-info btn-sm pull-right" style="min-width: 130px; margin: 2px;"><i class="fa fa-list"></i> Details</button></a>
                       <a href="{{ route('roles.create') }}"><button class="btn btn-primary btn-sm pull-right" style="min-width: 130px; margin: 2px;"><i class="fa fa-plus"></i> Add New</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="chart tab-pane" id="departments" style="position: relative; height: 400px;">
+              <div class="col-lg-12">
+                <div class="row" style="padding: 5px;">
+                  <div class="card" style="max-height: 340px; overflow-y: auto;">
+                    <div class="card-heading">
+                      <h4>System Departments</h4>
+                    </div>
+                    <div class="card-body">
+                      <table  id="example1" class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <th class="text-center">Actions</th>
+                          </tr>
+                        </thead>
+                        <tbody><!--{{ $p=0 }} -->
+                          @foreach($departments as $department)
+                          <tr>
+                            <th>{{ ++$p }}</th>
+                            <td style="min-width: 150px;">{{ $department->name }}</td>
+                              <td style="max-width: 160px;">{{ $department->description }}</td>
+                              <td>
+                                  @if($department->status == 'Active')
+                                      <span class="btn-xs btn-rounded label label-success">{{ $department->status }}</span>
+                                  @elseif($department->status == 'Suspended')
+                                      <span class="btn-xs btn-rounded label label-warning">{{ $department->status }}</span>
+                                  @elseif($department->status == 'Blocked')
+                                      <span class="btn-xs btn-rounded label label-primary">{{ $department->status }}</span>
+                                  @elseif($department->status == 'Removed')
+                                      <span class="btn-xs btn-rounded label label-info">{{ $department->status }}</span>
+                                  @else
+                                      <span class="btn-xs btn-rounded label label-default">{{ $department->status }}</span>
+                                  @endif
+                              </td>
+                              <td class="text-center" style="min-width: 150px;">
+                                  <a href="{{ route('departments.show', $department->id) }}" class="btn btn-md text-info" title="Role Details"><i class="fa fa-info-circle"></i></a>
+                                  <a href="{{ route('departments.edit', $department->id) }}" class="btn btn-md text-primary"><i class="fa fa-edit" title="Edit Role Details"></i></a>
+                              </td>
+                          </tr>
+                          @endforeach
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                  <div class="card">
+                    <div class="card-body" style="padding: 8px;">
+                      <a href="{{ route('departments.index') }}"><button class="btn btn-info btn-sm pull-right" style="min-width: 130px; margin: 2px;"><i class="fa fa-list"></i> Details</button></a>
+                      <a href="{{ route('departments.create') }}"><button class="btn btn-primary btn-sm pull-right" style="min-width: 130px; margin: 2px;"><i class="fa fa-plus"></i> Add New</button></a>
                     </div>
                   </div>
                 </div>

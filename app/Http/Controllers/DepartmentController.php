@@ -65,11 +65,10 @@ class DepartmentController extends Controller
     public function show($id)
     {
         $department = Department::find($id);
-        $references = Reference::where('department_id', $id)->get();
         if (!$department) {
             return redirect()->route('departments.index')->with('danger', 'Department Not Found!');
         }
-        return view('system.departments.show', compact(['department','references']));
+        return view('system.departments.show', compact(['department']));
     }
 
     /**

@@ -1,6 +1,6 @@
 <header class="main-header" id="navbar">
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{ url('/') }}" class="logo">
         <span class="logo-mini"><b>Y</b>CN</span>
         <span class="logo-lg"><b>{{ config('app.name') }}</b></span>
     </a>
