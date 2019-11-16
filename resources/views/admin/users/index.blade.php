@@ -17,7 +17,7 @@
 				<ul class="nav nav-tabs pull-right">
 					<li class="active"><a href="#sales-chart" data-toggle="tab">System Users</a></li>
 					<li class=""><a href="#urevenue-chart" data-toggle="tab">User Options</a></li>
-					<li class="pull-left header"><i class="fa fa-users text-primary"></i></li>
+					<li class="pull-left header"><i class="fa fa-users text-primary"></i><a href="{{ route('users.create') }}" class="btn btn-xs btn-info pull-left"><i class="fa-plus fa"></i> New</a></li>
 				</ul>
 				<div class="tab-content padding">
 					<div class="chart tab-pane" id="urevenue-chart" style="position: relative; height: 400px;">

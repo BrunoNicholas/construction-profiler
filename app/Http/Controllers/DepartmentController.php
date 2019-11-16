@@ -48,8 +48,8 @@ class DepartmentController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'name'          => 'required',
-            'created_by'    => 'required',
+            'department_name'          => 'required',
+            'user_id'    => 'required',
             'status'        => 'required',
         ]);
         Department::create($request->all());
@@ -97,8 +97,8 @@ class DepartmentController extends Controller
     public function update(Request $request, $id)
     {
         request()->validate([
-            'name'          => 'required',
-            'created_by'    => 'required',
+            'department_name'          => 'required',
+            'user_id'    => 'required',
             'status'        => 'required',
         ]);
         Department::find($id)->update($request->all());

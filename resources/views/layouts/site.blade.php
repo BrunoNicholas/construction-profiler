@@ -12,9 +12,10 @@
     <link rel="stylesheet" href="{{ asset('assets/bower_components/font-awesome/css/font-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/bower_components/Ionicons/css/ionicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/bower_components/jvectormap/jquery-jvectormap.css') }}">
+    @yield('styles')
     <link rel="stylesheet" href="{{ asset('assets/css/AdminLTE.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/skins/_all-skins.min.css') }}">
-    @yield('styles')
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -70,6 +71,7 @@
     <script src="{{ asset('assets/bower_components/jquery/dist/jquery.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/bootstrap/dist/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/fastclick/lib/fastclick.js') }}"></script>
+    @yield('scripts')
     <script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js') }}"></script>
@@ -78,7 +80,6 @@
     <script src="{{ asset('assets/bower_components/chart.js/Chart.js') }}"></script>
     <script src="{{ asset('assets/js/pages/dashboard2.js') }}"></script>
     <script src="{{ asset('assets/js/demo.js') }}"></script>
-    @yield('scripts')
     <script>
         function showTime(){
             var date = new Date();
