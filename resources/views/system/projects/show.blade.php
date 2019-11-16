@@ -153,7 +153,7 @@
                                 </form>
                             </div>
                         @endrole
-                        <div class="col-md-12" style="margin: 5px;">
+                        <div class="col-md-12" style="margin-top: 5px; margin-bottom: 5px;">
                             <div class="form-control">
                                 Created By: <a href="{{ route('users.show',$project->user_id) }}"> {{ App\User::where('id',$project->user_id)->get()->first()->name }} </a>
                             </div>
