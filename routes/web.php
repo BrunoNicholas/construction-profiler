@@ -52,6 +52,11 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function
 
 
 	// closures
+	Route::post('/{type}/message', [
+		'as'	=> 'messages.storeAll',
+		'uses'	=> 'MessageController@storeAll'
+	]);
+	
 	Route::get('/user/profile/settings', [
 		'as' 	=> 'settings',
 		'uses'	=> 'UserPageController@settings',

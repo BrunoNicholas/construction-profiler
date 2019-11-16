@@ -11,7 +11,12 @@
     </ol>
 @endsection
 @section('content')
+	<div class="row">
+        @include('layouts.includes.left_message')
 
+
+
+    </div>
 @endsection
 @section('scripts')
 

@@ -35,9 +35,9 @@
 						            @endforeach
 
 						            @if (session('success'))
-						            <div class="alert alert-success">
-						            {{ session('success') }}
-						            </div>
+							            <div class="alert alert-success">
+							            	{{ session('success') }}
+							            </div>
 						            @endif
 						                    
 						            <input type="hidden" name="_token" value="{{ csrf_token() }}">

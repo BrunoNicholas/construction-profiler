@@ -134,7 +134,7 @@ class MessageController extends Controller
             ['sender', Auth::user()->id]])->orWhere([
                 ['folder', 'normal'],
                 ['receiver', Auth::user()->id]])->count();
-        $users      = User::all();
+        $users      = User::latest()->paginate(100);
         $type = 'all';
         return view('user.messages.create', compact(['type','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
     }
