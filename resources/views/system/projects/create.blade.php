@@ -68,7 +68,7 @@
                                                     <input type="date" class="custom-input form-control" id="end-date" name="end_date">
                                                 </div>
                                             </div>
-                                            <input type="hidden" name="created_by" value="{{ Auth::user()->id }}">
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="desc">Project Description :</label>
@@ -92,7 +92,7 @@
                                                         <select name="department" class="custom-select form-control" id="depts">
                                                             <option value="1">Select Department</option>
                                                             @foreach($departments as $depart)
-                                                                <option value="{{ $depart->id }}">{{ $depart->name }}</option>
+                                                                <option value="{{ $depart->id }}">{{ $depart->department_name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -108,6 +108,8 @@
                                                     <input type="radio" name="status" value="Pending" checked> Pending
                                                     <input type="radio" name="status" value="Active"> Active
                                                     <input type="radio" name="status" value="Done"> Done
+                                                    <input type="radio" name="status" value="Open"> Open
+                                                    <input type="radio" name="status" value="Closed"> Closed
                                                 </div>
                                             </div>
                                         </div>

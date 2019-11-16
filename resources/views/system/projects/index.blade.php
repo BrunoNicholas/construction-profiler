@@ -17,6 +17,7 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs pull-right">
                     <li class="active"><a href="#urevenue-chart" data-toggle="tab"> Projects </a></li>
+                    <li><a href="#myprojects" data-toggle="tab"> My Projects </a></li>
                     <li class="pull-left header"><i class="fa fa-list text-info"></i><a href="{{ route('projects.create') }}" class="btn btn-xs btn-info pull-left"><i class="fa-plus fa"></i> New</a></li>
                 </ul>
                 <div class="tab-content padding">
@@ -39,9 +40,9 @@
                                                     @endif
                                                     <div class="panel-body">
                                                         <div class="d-flex no-block align-items-center m-b-15">
-                                                            <span class="pull-left"><i class="ti-calendar"></i> {{ $project->start_date }} </span>
-                                                            <div class="ml-auto pull right">
-                                                                <span><i class="ti-calendar"></i> {{ $project->end_date }} </span>
+                                                            <span class="pull-left"><i class="fa fa-calendar"></i> {{ $project->start_date }} </span>
+                                                            <div class="ml-auto pull-right">
+                                                                <span><i class="fa fa-calendar"></i> {{ $project->end_date }} </span>
                                                             </div>
                                                         </div>
                                                         <h3 class="font-normal text-center"> {{ $project->name }} </h3>
@@ -61,6 +62,14 @@
                                         </div>
                                     @endforeach
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="chart tab-pane" id="myprojects" style="position: relative; height: 500px; overflow-y: auto;">
+                        <div class="card">
+                            <div class="card-header"><h4 style="width: 100%; text-align: center;"> My Projects </h4></div>
+                            <div class="card-body">
+
                             </div>
                         </div>
                     </div>

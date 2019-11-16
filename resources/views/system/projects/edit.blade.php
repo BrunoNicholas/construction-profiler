@@ -24,7 +24,116 @@
 						<div class="card">
 							<div class="card-header"><h4 style="width: 100%; text-align: center;"> Edit Project </h4></div>
                             <div class="card-body">
+                            	<form action="{{ route('projects.update', $project->id) }}" enctype="multipart/form-data" method="POST" class="tab-wizard wizard-circle">
+                                    @csrf
+                                    {{ method_field('PATCH') }}
 
+                                    @foreach ($errors->all() as $error)
+                                        <p class="alert alert-danger">{{ $error }}</p>
+                                    @endforeach
+
+                                    @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
+                                            
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <!-- Step 1 -->
+                                    <h6 class="text-center" style="width: 100%;">Category Info</h6>
+                                    <section>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="Names">Project Name :</label>
+                                                    <input type="text" name="name" value="{{ $project->name }}" class="form-control" id="Names" placeholder="Fellowship Project Name" autofocus required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="image">Add Image :</label>
+                                                    <input type="file" id="image" class="form-control" name="description_image" accept=".jpg, .png, .jpeg">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="start-date">Start Date :</label>
+                                                    <input type="date" value="{{ $project->start_date }}" class="custom-input form-control" id="start-date" name="start_date" required>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <label for="end-date">End Date :</label>
+                                                    <input type="date" value="{{ $project->end_date }}" class="custom-input form-control" id="end-date" name="end_date">
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="user_id" value="{{ $project->user_id }}">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label for="desc">Project Description :</label>
+                                                    <textarea name="description" placeholder="Project description here!" class="form-control" id="desc"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label for="period">Estimated Period :</label>
+                                                        <input name="estimated_period" placeholder="Estimated period of action!" class="form-control" id="period">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <div class="form-group">
+                                                        <label for="depts">Department in Charge :</label>
+                                                        <select name="department" class="custom-select form-control" id="depts">
+                                                            <option value="1">Select Department</option>
+                                                            @foreach($departments as $depart)
+                                                                <option value="{{ $depart->id }}">{{ $depart->name }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="form-group">
+                                                    <label>Project Status :</label>
+                                                    <input type="radio" name="status" value="Approved" @if ($project->status == 'Approved')
+                                                    	checked 
+                                                    @endif> Approved
+                                                    <input type="radio" name="status" value="Pending" @if ($project->status == 'Pending')
+                                                    	checked 
+                                                    @endif> Pending
+                                                    <input type="radio" name="status" value="Active" @if ($project->status == 'Active')
+                                                    	checked 
+                                                    @endif> Active
+                                                    <input type="radio" name="status" value="Done" @if ($project->status == 'Done')
+                                                    	checked 
+                                                    @endif> Done
+                                                    <input type="radio" name="status" value="Open" @if ($project->status == 'Open')
+                                                    	checked 
+                                                    @endif> Open
+                                                    <input type="radio" name="status" value="Closed" @if ($project->status == 'Closed')
+                                                    	checked 
+                                                    @endif> Closed
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </section>
+                                    <div div class="col-md-12 text-center">
+                                        <a href="{{ route('projects.index') }}" class="btn btn-rounded btn-info" style="min-width: 150px;">Back</a>
+                                        <button type="submit" class="btn btn-rounded btn-primary" style="min-width: 150px;">Add Project</button>
+                                    </div>
+                                </form>
                             </div>
 						</div>
 					</div>
