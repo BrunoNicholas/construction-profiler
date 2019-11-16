@@ -26,7 +26,7 @@
                 <div class="tab-content padding">
                     <div class="chart tab-pane active" id="urevenue-chart" style="position: relative; height: 500px; overflow-y: auto;">
                         <div class="card">
-
+                            <div class="card-header"><h3 style="width: 100%; text-align: center;">Required Information</h3></div>
                             <div class="card-body">
                                 <form action="{{ route('departments.store') }}" method="POST" class="tab-wizard wizard-circle">
                                     @csrf
@@ -42,8 +42,6 @@
                                     @endif
 
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-                                    <h6 style="width: 100%; text-align: center;">Required Information</h6>
                                     <hr>
                                     <section>
                                         <div class="row">

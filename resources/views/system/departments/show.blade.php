@@ -26,9 +26,10 @@
                 <div class="tab-content padding">
                     <div class="chart tab-pane active" id="urevenue-chart" style="position: relative; height: 500px; overflow-y: auto;">
                         <div class="card">
+                            <div class="card-header"><h4 style="width: 100%; text-align: center;"> View Department </h4></div>
+                            <div class="card-body">
 
-
-
+                            </div>
                         </div>
                     </div>
                 </div>
