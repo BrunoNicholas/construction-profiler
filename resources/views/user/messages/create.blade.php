@@ -18,7 +18,7 @@
           	<div class="box box-primary">
 	            <div class="box-header with-border">
 	              	<h3 class="box-title"><i class="fa-envelope fa text-red"></i> Compose New Message</h3>
-	              	<a href="javascript:void(0)" data-toggle="modal" data-target="#createModal" data-whatever="@mdo"> <button class="label label-danger btn"><i class="fa-users fa"></i> Send Public Email</button></a>
+	              	<a href="javascript:void(0)" data-toggle="modal" data-target="#createModal" data-whatever="@mdo"> <button class="label label-danger btn"><i class="fa-users fa"></i> Send Public Message</button></a>
 	            </div>
 	            <div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
                     <div class="modal-dialog" role="document">
