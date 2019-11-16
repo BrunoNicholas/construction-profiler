@@ -155,16 +155,16 @@ class MessageController extends Controller
         if ($request->status == 'Draft') {
             $request->receiver = Auth::user()->id;
             Message::create($request->all());
-            return redirect()->route('messages.index', 'inbox')->with('success','Email saved successfully as draft!');
+            return redirect()->route('messages.index', 'inbox')->with('success','Message saved successfully as draft!');
         }
         Message::create($request->all());
         if ($request->router) {
             if ($type) {
-                return redirect()->route($request->router, $type)->with('success','Email added successfully!');
+                return redirect()->route($request->router, $type)->with('success','Message added successfully!');
             }
-            return redirect()->route($request->router, 'all')->with('success','Email added successfully!');
+            return redirect()->route($request->router, 'all')->with('success','Message added successfully!');
         }
-        return redirect()->route('messages.index', 'inbox')->with('success','Email sent successfully!');
+        return redirect()->route('messages.index', 'inbox')->with('success','Message sent successfully!');
     }
 
     /**
@@ -183,7 +183,7 @@ class MessageController extends Controller
         if ($request->status == 'Draft') {
             $request->receiver = Auth::user()->id;
             Message::create($request->all());
-            return redirect()->route('messages.index', 'inbox')->with('success','Email saved successfully as draft!');
+            return redirect()->route('messages.index', 'inbox')->with('success','Message saved successfully as draft!');
         }
         $sendMessages = [];
         $users = User::all();
@@ -205,11 +205,11 @@ class MessageController extends Controller
         }
         if ($request->router) {
             if ($type) {
-                return redirect()->route($request->router, $type)->with('success','Email added successfully!');
+                return redirect()->route($request->router, $type)->with('success','Message added successfully!');
             }
-            return redirect()->route($request->router, 'all')->with('success','Email added successfully!');
+            return redirect()->route($request->router, 'all')->with('success','Message added successfully!');
         }
-        return redirect()->route('messages.index', 'inbox')->with('success','Email sent successfully!');
+        return redirect()->route('messages.index', 'inbox')->with('success','Message sent successfully!');
     }
 
     /**
@@ -235,7 +235,7 @@ class MessageController extends Controller
         $message    = Message::find($id);
         $type       = 'inbox';
         if (!$message) {
-            return redirect()->route('messages.index',$type)->with('danger', 'Email Message Not Found!');
+            return redirect()->route('messages.index',$type)->with('danger', 'Message Not Found!');
         }
         if ($message->sender == Auth::user()->id) {
             return view('user.messages.show', compact(['message','type','id','users','allCount','inboxCount','trashCount','draftCount','sentCount','spamCount','impCount','urgCount','offCount','unoffCount','normalCount']));
@@ -275,7 +275,7 @@ class MessageController extends Controller
         ]);
         Message::find($id)->update($request->all());
         $type = 'inbox';
-        return redirect()->route('messages.index','type')->with('success','Email message successfully');
+        return redirect()->route('messages.index','type')->with('success','Message updated successfully.');
     }
 
     /**

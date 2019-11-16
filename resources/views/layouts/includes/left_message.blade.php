@@ -19,13 +19,13 @@
 	            <li @if(route('messages.index', 'inbox') == Request::fullUrl()) class="active" @endif>
 	            	<a href="{{ route('messages.index', 'inbox') }}">
 	            		<i class="fa fa-inbox"></i> Inbox
-	            		@if($inboxCount > 0)<span class="label label-primary pull-right"> {{ $inboxCount }} </span>@endif
+	            		@if($inboxCount > 0)<span class="label label-info pull-right"> {{ $inboxCount }} </span>@endif
 	            	</a>
 	            </li>
 	            <li @if(route('messages.index', 'sent') == Request::fullUrl()) class="active" @endif>
 	            	<a href="{{ route('messages.index', 'sent') }}">
 	            		<i class="fa fa-envelope-o"></i> Sent
-	            		@if($spamCount > 0)<span class="label label-primary pull-right"> {{ $sentCount }} </span>@endif
+	            		@if($sentCount > 0)<span class="label label-success pull-right"> {{ $sentCount }} </span>@endif
 	            	</a>
 	            </li>
 	            <li @if(route('messages.index', 'draft') == Request::fullUrl()) class="active" @endif>
@@ -43,14 +43,12 @@
 	            <li @if(route('messages.index','trash') == Request::fullUrl()) class="active" @endif>
 	            	<a href="{{ route('messages.index','trash') }}">
 	            		<i class="fa fa-trash-o"></i> Trash 
-	            		@if($trashCount > 0)<span class="label label-primary pull-right"> {{ $trashCount }} </span>@endif
+	            		@if($trashCount > 0)<span class="label label-danger pull-right"> {{ $trashCount }} </span>@endif
 	            	</a>
 	            </li>
 	        </ul>
         </div>
-        <!-- /.box-body -->
     </div>
-	<!-- /. box -->
     <div class="box box-solid">
         <div class="box-header with-border">
           	<h3 class="box-title">Message Categories</h3>

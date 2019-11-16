@@ -68,7 +68,7 @@
                       <!-- /.btn-group -->
                       <a href=""><button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button></a>
                       <div class="pull-right">
-                          {{ $messages->links() }}
+                          {{-- {{ $messages->links() }} --}}
                       </div>
                       <!-- /.pull-right -->
                   </div>
