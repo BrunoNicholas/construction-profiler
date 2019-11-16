@@ -46,6 +46,19 @@
 	        </li>
 	        <li class="treeview">
 	          <a href="#">
+	            <i class="fa fa-pie-chart"></i>
+	            <span>Companies</span>
+	            <span class="pull-right-container">
+	              <i class="fa fa-angle-left pull-right"></i>
+	            </span>
+	          </a>
+	          <ul class="treeview-menu">
+	            <li><a href="{{ route('companies.index') }}"><i class="fa fa-circle-o"></i> View All Companiews </a></li>
+	            <li><a href="{{ route('companies.index') }}"><i class="fa fa-circle-o"></i> My Companies </a></li>
+	          </ul>
+	        </li>
+	        <li class="treeview">
+	          <a href="#">
 	            <i class="fa fa-files-o"></i>
 	            <span>Projects</span>
 	            <span class="pull-right-container">
@@ -60,15 +73,13 @@
 	        </li>
 	        <li class="treeview">
 	          <a href="#">
-	            <i class="fa fa-pie-chart"></i>
-	            <span>Companies</span>
+	            <i class="fa fa-table"></i> <span>Worker Profiles</span>
 	            <span class="pull-right-container">
 	              <i class="fa fa-angle-left pull-right"></i>
 	            </span>
 	          </a>
 	          <ul class="treeview-menu">
-	            <li><a href="{{ route('companies.index') }}"><i class="fa fa-circle-o"></i> View All Companiews </a></li>
-	            <li><a href="{{ route('companies.index') }}"><i class="fa fa-circle-o"></i> My Companies </a></li>
+	            <li><a href="{{ route('profiles.index') }}"><i class="fa fa-circle-o"></i> View Worker Profiles</a></li>
 	          </ul>
 	        </li>
 	        <li class="treeview">
@@ -82,17 +93,6 @@
 	            <li><a href="{{ route('galleries.index') }}"><i class="fa fa-circle-o"></i> My Galleries</a></li>
 	            <li><a href="{{ route('images.index') }}"><i class="fa fa-circle-o"></i> My Images </a></li>
 	            <li><a href="javascript:void(0)"><i class="fa fa-circle-o"></i> Attachments</a></li>
-	          </ul>
-	        </li>
-	        <li class="treeview">
-	          <a href="#">
-	            <i class="fa fa-table"></i> <span>Worker Profiles</span>
-	            <span class="pull-right-container">
-	              <i class="fa fa-angle-left pull-right"></i>
-	            </span>
-	          </a>
-	          <ul class="treeview-menu">
-	            <li><a href="{{ route('profiles.index') }}"><i class="fa fa-circle-o"></i> View Worker Profiles</a></li>
 	          </ul>
 	        </li>
 	        <li class="treeview">

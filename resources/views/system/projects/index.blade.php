@@ -1,7 +1,9 @@
 @extends('layouts.site')
 
 @section('title') Projects @endsection
-@section('styles', '') 
+@section('styles')
+<link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
+@endsection
 @section('page-tree')
     <h1> Projects <small> View, @role(['super-admin','admin']) user and system @else your @endrole projects.</small></h1>
     <ol class="breadcrumb">
