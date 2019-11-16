@@ -74,7 +74,7 @@
                                             <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label for="desc">Project Description :</label>
-                                                    <textarea name="description" placeholder="Project description here!" class="form-control" id="desc"></textarea>
+                                                    <textarea name="description" placeholder="Project description here!" class="form-control" id="desc">{{ $project->description }}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -83,7 +83,7 @@
                                                 <div class="form-group">
                                                     <div class="form-group">
                                                         <label for="period">Estimated Period :</label>
-                                                        <input name="estimated_period" placeholder="Estimated period of action!" class="form-control" id="period">
+                                                        <input name="estimated_period" value="{{ $project->estimated_period }}" placeholder="Estimated period of action!" class="form-control" id="period">
                                                     </div>
                                                 </div>
                                             </div>
@@ -92,9 +92,9 @@
                                                     <div class="form-group">
                                                         <label for="depts">Department in Charge :</label>
                                                         <select name="department" class="custom-select form-control" id="depts">
-                                                            <option value="1">Select Department</option>
+                                                            <option value="{{ $project->department }}">Select Department</option>
                                                             @foreach($departments as $depart)
-                                                                <option value="{{ $depart->id }}">{{ $depart->name }}</option>
+                                                                <option value="{{ $depart->id }}">{{ $depart->department_name }}</option>
                                                             @endforeach
                                                         </select>
                                                     </div>
@@ -131,7 +131,7 @@
                                     </section>
                                     <div div class="col-md-12 text-center">
                                         <a href="{{ route('projects.index') }}" class="btn btn-rounded btn-info" style="min-width: 150px;">Back</a>
-                                        <button type="submit" class="btn btn-rounded btn-primary" style="min-width: 150px;">Add Project</button>
+                                        <button type="submit" class="btn btn-rounded btn-primary" style="min-width: 150px;">Update Project</button>
                                     </div>
                                 </form>
                             </div>

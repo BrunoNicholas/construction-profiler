@@ -52,7 +52,7 @@ class ProjectController extends Controller
     {
         request()->validate([
         'name'          => 'required|unique:projects',
-        'created_by'    => 'required',
+        'user_id'    => 'required',
         'start_date'    => 'required',
         'status'        => 'required',
         ]);
@@ -112,12 +112,12 @@ class ProjectController extends Controller
     {
         request()->validate([
             'name'          => 'required',
-            'created_by'    => 'required',
+            'user_id'    => 'required',
             'start_date'    => 'required',
             'status'        => 'required',
         ]);
         $project = Project::find($id);
-        $project->created_by    = $request->created_by;
+        $project->user_id    = $request->user_id;
         $project->department    = $request->department;
         $project->name          = $request->name;
         $project->description   = $request->description;
