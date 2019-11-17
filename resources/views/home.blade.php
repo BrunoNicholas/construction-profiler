@@ -64,10 +64,10 @@
 
               <div class="progress-group">
                 <span class="progress-text">Total Complete Projects</span>
-                <span class="progress-number"><b>160</b>/200</span>
+                <span class="progress-number"><b>{{ App\Models\Project::where('status','done')->get()->count() }}</b>/{{ App\Models\Project::all()->count() }}</span>
 
                 <div class="progress sm">
-                  <div class="progress-bar progress-bar-aqua" style="width: 50%"></div>
+                  <div class="progress-bar progress-bar-aqua" style="width: {{ (App\Models\Project::where('status','done')->get()->count())/(App\Models\Project::all()->count())*100  }}%"></div>
                 </div>
               </div>
               <!-- /.progress-group -->
@@ -108,7 +108,7 @@
           <div class="row">
             <div class="col-sm-3 col-xs-6">
               <div class="description-block border-right">
-                <span class="description-percentage text-green"><i class="fa fa-tree"></i> O Projects</span>
+                <span class="description-percentage text-green"><i class="fa fa-tree"></i> {{ App\Models\Project::all()->count() }} </span>
                 <h5 class="description-header">
                   <div>
                     <a href="{{ route('projects.index') }}">

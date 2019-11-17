@@ -32,7 +32,7 @@
                                         <div class="col-md-4" style="padding-top: 10px;">
                                             <div class="card">
                                                 <div class="el-card-item">
-                                                    <div class="el-card-avatar el-overlay-1" style="text-align: center;"> 
+                                                    <div class="el-card-avatar el-overlay-1" style="text-align: center; max-width: 450px; overflow-x: auto;"> 
                                                         <img src="{{ asset('files/storage/images/'. $gallery->image) }}" alt="image" style=" height: 200px;width: auto;"/>
                                                         <div class="el-overlay">
                                                             <div class="row">
