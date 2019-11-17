@@ -29,7 +29,7 @@
                                         <p class="col-md-12 alert alert-danger" style="padding-left: 50px;"> No gallery items found! </p>
                                     @endif
                                     @foreach($galleries as $gallery)
-                                        <div class="col-md-4">
+                                        <div class="col-md-4" style="padding-top: 10px;">
                                             <div class="card">
                                                 <div class="el-card-item">
                                                     <div class="el-card-avatar el-overlay-1" style="text-align: center;"> 
@@ -63,6 +63,7 @@
                                                                     {{ csrf_field() }}
                                                                     {{ method_field('DELETE') }}
                                                                     <button type="submit" onclick="return confirm('This will delete your album and it\'s image complately. It is not reversible.\nIs this okay?')" class="btn btn-xs btn-block btn-danger">Delete Album</button>
+                                                                </form>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -70,7 +71,6 @@
 
                                             </div>
                                         </div>
-                                        {{ ++$i }}
                                     @endforeach
                                 </div>
                             </div>

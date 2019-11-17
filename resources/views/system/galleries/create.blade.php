@@ -107,7 +107,7 @@
                                     </section>
                                     <div div class="col-md-12 text-center">
                                         <a href="{{ route('galleries.index') }}" class="btn btn-rounded btn-info" style="min-width: 150px;">Back</a>
-                                        <button type="submit" class="btn btn-rounded btn-primary" style="min-width: 150px;">Add Item</button>
+                                        <button type="submit" class="btn btn-rounded btn-primary" style="min-width: 150px;">Add Gallery</button>
                                     </div>
                                 </form>
                             </div>

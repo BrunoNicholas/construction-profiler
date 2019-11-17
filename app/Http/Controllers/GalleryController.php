@@ -68,16 +68,18 @@ class GalleryController extends Controller
             Image::make($user_image)->save( public_path('/files/storage/images/' . $filename) );
             // $path = $request->file('image')->storeAs('public/gallery/', $filename);
 
-            $image_item->image = $filename;
+            $image_item->image      = $filename;
+            $image_item->gallery_name = $request->gallery_name;
+            $image_item->gallery_id = $request->gallery_id;
+            $image_item->caption    = $request->caption;
+            $image_item->user_id    = $request->user_id;
+            $image_item->title      = $request->title;
+            $image_item->save();
+
+            return back()->with('success','Gallery saved successfully!');
         }
-
-        $image_item->gallery_id = $request->gallery_id;
-        $image_item->caption    = $request->caption;
-        $image_item->user_id    = $request->user_id;
-        $image_item->title      = $request->title;
-        $image_item->save();
-
-        return back()->with('success','Gallery saved successfully!');
+        return back()->with('danger','You have not attached an image.\n Please do so and try again');
+        
     }
     /**
      * Display the specified resource.
@@ -161,7 +163,7 @@ class GalleryController extends Controller
     {
         $item = Gallery::find($id);
 
-        $pathToImage = public_path('files/profile/images/').$item->image;
+        $pathToImage = public_path('files/storage/images/').$item->image;
         File::delete($pathToImage);
 
         $item->delete();
