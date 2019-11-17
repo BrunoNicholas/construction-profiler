@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
-use Image as IntervImage;
+use Illuminate\Support\Facades\DB;
+use Image;
 use File;
 
 class GalleryController extends Controller
@@ -27,7 +28,8 @@ class GalleryController extends Controller
     public function index()
     {
         $galleries = Gallery::latest()->paginate(20);
-        return view('system.galleries.index',compact(['galleries']));
+        $countOthers = Gallery::whereNull('gallery_name')->whereNull('gallery_id')->get()->count();
+        return view('system.galleries.index',compact(['galleries','countOthers']));
     }
     /**
      * Show the form for creating a new resource.
@@ -36,7 +38,7 @@ class GalleryController extends Controller
      */
     public function create()
     {
-        $galleries = Gallery::latest()->paginate(50);
+        $galleries = Gallery::latest()->paginate(20);
         return view('system.galleries.create',compact(['galleries']));
     }
     /**
@@ -103,7 +105,8 @@ class GalleryController extends Controller
         if (!$gallery) {
             return back()->with('danger', 'Gallery not found. It is either missing or deleted.');
         }
-        return view('system.galleries.edit', compact(['gallery']));
+        $galleries = Gallery::latest()->paginate(20);
+        return view('system.galleries.edit', compact(['gallery','galleries']));
     }
     /**
      * Update the specified resource in storage.
@@ -158,7 +161,7 @@ class GalleryController extends Controller
     {
         $item = Gallery::find($id);
 
-        $pathToImage = public_path('files/profile/gallery/').$item->image;
+        $pathToImage = public_path('files/profile/images/').$item->image;
         File::delete($pathToImage);
 
         $item->delete();
