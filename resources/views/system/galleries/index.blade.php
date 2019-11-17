@@ -32,8 +32,10 @@
                                         <div class="col-md-4" style="padding-top: 10px;">
                                             <div class="card">
                                                 <div class="el-card-item">
-                                                    <div class="el-card-avatar el-overlay-1" style="text-align: center; max-width: 450px; overflow-x: auto;"> 
-                                                        <img src="{{ asset('files/storage/images/'. $gallery->image) }}" alt="image" style=" height: 200px;width: auto;"/>
+                                                    <div class="el-card-avatar el-overlay-1" style="text-align: center;"> 
+                                                        <div style="max-width: 450px; overflow-x: auto;">
+                                                            <img src="{{ asset('files/storage/images/'. $gallery->image) }}" alt="image" style=" height: 200px; width: auto;"/>
+                                                        </div>
                                                         <div class="el-overlay">
                                                             <div class="row">
                                                                 <div class="col-md-6">
@@ -68,7 +70,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                             </div>
                                         </div>
                                     @endforeach
@@ -82,7 +83,7 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
     <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
     <script>
         $(function () {
