@@ -64,7 +64,7 @@
 
               <div class="progress-group">
                 <span class="progress-text">Total Complete Projects</span>
-                <span class="progress-number"><b>{{ App\Models\Project::where('status','done')->get()->count() }}</b>/{{ App\Models\Project::all()->count() }}</span>
+                <span class="progress-number"><b>{{ (App\Models\Project::all()->count() > 0) ? App\Models\Project::where('status','done')->get()->count() }}</b>/{{ App\Models\Project::all()->count() : ''}}</span>
 
                 <div class="progress sm">
                   <div class="progress-bar progress-bar-aqua" style="width: {{ (App\Models\Project::where('status','done')->get()->count())/(App\Models\Project::all()->count())*100  }}%"></div>
