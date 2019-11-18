@@ -43,7 +43,7 @@ class WorkerProfileController extends Controller
             'status'        => 'required',
         ]);
         WorkerProfile::create($request->all());
-        return route('workprofiles.index')->with('success','Your worker profile has been created successfully!');
+        return route('profiles.index')->with('success','Your worker profile has been created successfully!');
     }
 
     /**
@@ -98,6 +98,6 @@ class WorkerProfileController extends Controller
     {
         $item = WorkerProfile::find($id);
         $item->delete();
-        return redirect()->route('workprofiles.index')->with('danger', 'Worker profile deleted successfully');
+        return redirect()->route('profiles.index')->with('danger', 'Worker profile deleted successfully');
     }
 }
