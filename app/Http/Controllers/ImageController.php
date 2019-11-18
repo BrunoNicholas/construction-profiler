@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Image;
 use Illuminate\Http\Request;
+use App\Models\Gallery;
 use Image as IntervImage;
 use File;
 
@@ -27,8 +28,9 @@ class ImageController extends Controller
      */
     public function create()
     {
-        $images = Image::latest()->paginate(20);
-        return view('system.images.create',compact(['images']));
+        $images     = Image::latest()->paginate(20);
+        $galleries  = Gallery::latest()->paginate(50);
+        return view('system.images.create',compact(['images','galleries']));
     }
 
     /**
@@ -40,11 +42,11 @@ class ImageController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'image'  => 'required',
-            'user_id'       => 'required',
+            'image'     => 'required',
+            'user_id'   => 'required',
         ]);
         
-        $gallery_item = Image::find($id);
+        $gallery_item = new Image();
         
         // if ($request->hasFile('image')) {
         if ($request->file('image')->isValid()) {
@@ -54,19 +56,15 @@ class ImageController extends Controller
             $user_image = $request->file('image');
             $filename = $fileWithoutExtension . '_' .time() . '.' . $user_image->getClientOriginalExtension();
 
-            Image::make($user_image)->save( public_path('/files/storage/images/' . $filename) );
+            IntervImage::make($user_image)->save( public_path('/files/storage/images/' . $filename) );
             // $path = $request->file('image')->storeAs('public/gallery/', $filename);
 
             $gallery_item->image = $filename;
 
-            $gallery_item->gallery_name = $request->gallery_name;
-            $gallery_item->description  = $request->description;
             $gallery_item->gallery_id = $request->gallery_id;
             $gallery_item->caption  = $request->caption;
             $gallery_item->title    = $request->title;
-            $gallery_item->size     = $request->size;
             $gallery_item->user_id = $request->user_id;
-            $gallery_item->status = $request->status;
             $gallery_item->save();
         } else
         {
@@ -124,30 +122,25 @@ class ImageController extends Controller
         // if ($request->hasFile('image')) {
         if ($request->file('image')->isValid()) {
 
+            $pathToImage = public_path('files/profile/images/').$gallery_item->image;
+            File::delete($pathToImage);
+
             $fileWithExtension = $request->file('image')->getClientOriginalName();
             $fileWithoutExtension = pathinfo($fileWithExtension, PATHINFO_FILENAME);
 
             $user_image = $request->file('image');
             $filename = $fileWithoutExtension . '_' .time() . '.' . $user_image->getClientOriginalExtension();
 
-            Image::make($user_image)->save( public_path('/files/storage/images/' . $filename) );
+            IntervImage::make($user_image)->save( public_path('/files/storage/images/' . $filename) );
             // $path = $request->file('image')->storeAs('public/gallery/', $filename);
 
             $gallery_item->image = $filename;
-
-            $gallery_item->gallery_name = $request->gallery_name;
-            $gallery_item->description  = $request->description;
-            $gallery_item->gallery_id = $request->gallery_id;
-            $gallery_item->caption  = $request->caption;
-            $gallery_item->title    = $request->title;
-            $gallery_item->size     = $request->size;
-            $gallery_item->user_id = $request->user_id;
-            $gallery_item->status = $request->status;
-            $gallery_item->save();
-        } else
-        {
-            return back('danger','Looks like no image was uploaded!');
         }
+        $gallery_item->gallery_id   = $request->gallery_id;
+        $gallery_item->caption      = $request->caption;
+        $gallery_item->title        = $request->title;
+        $gallery_item->user_id      = $request->user_id;
+        $gallery_item->save();
     }
 
     /**
@@ -161,10 +154,10 @@ class ImageController extends Controller
         $item = Image::find($id);
         // delete old image
         
-        $pathToImage = public_path('files/profile/images/').$item->image;
+        $pathToImage = public_path('files/storage/images/').$item->image;
         File::delete($pathToImage);
 
         $item->delete();
-        return redirect()->route('companies.index')->with('danger', 'Company deleted successfully');
+        return redirect()->route('images.index')->with('danger', 'Image deleted successfully');
     }
 }

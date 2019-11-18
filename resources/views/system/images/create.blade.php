@@ -26,6 +26,69 @@
                             <div class="card-header"><h4 style="width: 100%; text-align: center;"> Add Images </h4></div>
                             <div class="card-body">
 
+                                <form action="{{ route('images.store') }}" enctype="multipart/form-data" method="POST">
+                                    @csrf
+
+                                    @foreach ($errors->all() as $error)
+                                        <p class="alert alert-danger">{{ $error }}</p>
+                                    @endforeach
+
+                                    @if (session('success'))
+                                        <div class="alert alert-success">
+                                            {{ session('success') }}
+                                        </div>
+                                    @endif
+                                            
+                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                    <!-- Step 1 -->
+                                    <br>
+                                    <h6 class="text-center">Category Info</h6>
+                                    <br>
+                                    <section class="row">
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="file-item">Add Image :</label>
+                                                        <input type="file" class="form-control" id="file-item" name="image" accept=".jpg, .png, .jpeg" required>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="main"> Select Gallery : </label>
+                                                        <select class="custom-select form-control" name="gallery_id">
+                                                            @foreach($galleries as $gallery)
+                                                                <option value="{{ $gallery->id }}">{{ $gallery->gallery_name . ' ('. $gallery->title . ') ' }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="caption_text"> Image Title : </label>
+                                                        <input type="text" name="title" class="form-control" id="caption_text" placeholder="Image Title">
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="caption_text"> Image Caption : </label>
+                                                        <input type="text" name="caption" class="form-control" id="caption_text" placeholder="Caption Text">
+                                                    </div>
+                                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                    <div div class="col-md-12 text-center">
+                                        <a href="{{ route('images.index') }}" class="btn btn-rounded btn-info" style="min-width: 150px;">Back</a>
+                                        <button type="submit" class="btn btn-rounded btn-primary" style="min-width: 150px;">Add Image</button>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
                     </div>

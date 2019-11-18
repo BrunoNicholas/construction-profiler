@@ -54,7 +54,7 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="main"> Main Gallery : </label>
-                                                        <select class="custom-select form-control" name="main_gallery">
+                                                        <select class="custom-select form-control" name="gallery_id">
                                                             <option value="">Chose from Existing</option>
                                                             @foreach($galleries as $gallery)
                                                                 <option value="{{ $gallery->id }}">{{ $gallery->gallery_name . ' ('. $gallery->title . ') ' }}</option>
