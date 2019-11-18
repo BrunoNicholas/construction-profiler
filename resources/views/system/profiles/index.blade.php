@@ -47,7 +47,7 @@
                                                         <div style="max-width: 450px; overflow-x: auto;">
                                                             <img src="{{ asset('files/profile/images/'. App\User::where('id',$profile->user_id)->first()->profile_image) }}" alt="image" style=" height: 200px; width: auto; border-radius: 10px;" />
                                                         </div>
-                                                        <div><span class="text-primary"><i class="fa-user fa"></i> {{ App\User::where('id',$profile->user_id)->first()->name }}</span>
+                                                        <div><span class="text-primary"><i class="fa-user fa"></i> {{ App\User::where('id',$profile->user_id)->first()->name }}</span></div>
                                                     </td>
                                                     <td style="vertical-align: middle;">
                                                         {{ $profile->profile_category }}
