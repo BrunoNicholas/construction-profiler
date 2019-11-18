@@ -177,22 +177,22 @@
                                       <div class="form-group">
                                           <label class="col-md-12">Account Status </label>
                                           <div class="col-md-12">
-                                              <input type="radio" name="status" value="Active" @if ($user->status == strtolower('Active'))
+                                              <input type="radio" name="status" value="Active" @if (strtolower($user->status) == strtolower('Active'))
                                                   checked 
                                               @endif> Active
-                                              <input type="radio" name="status" value="Busy" @if ($user->status == strtolower('Busy'))
+                                              <input type="radio" name="status" value="Busy" @if (strtolower($user->status) == strtolower('Busy'))
                                                   checked 
                                               @endif> Busy
-                                              <input type="radio" name="status" value="Inactive" @if ($user->status == strtolower('Inactive'))
+                                              <input type="radio" name="status" value="Inactive" @if (strtolower($user->status) == strtolower('Inactive'))
                                                   checked 
                                               @endif> Inactive
-                                              <input type="radio" name="status" value="Blocked" @if ($user->status == strtolower('Blocked'))
+                                              <input type="radio" name="status" value="Blocked" @if (strtolower($user->status) == strtolower('Blocked'))
                                                   checked 
                                               @endif> Blocked
-                                              <input type="radio" name="status" value="Not Active" @if ($user->status == strtolower('Not Active'))
+                                              <input type="radio" name="status" value="Not Active" @if (strtolower($user->status) == strtolower('Not Active'))
                                                   checked 
                                               @endif> Not Active
-                                              <input type="radio" name="status" value="Available" @if ($user->status == strtolower('Available'))
+                                              <input type="radio" name="status" value="Available" @if (strtolower($user->status) == strtolower('Available'))
                                                   checked 
                                               @endif> Available
                                           </div>
