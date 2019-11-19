@@ -44,7 +44,7 @@
                                             <div class="col-md-6">
                                                 <div class="form-group">
                                                     <label for="Names">Project Name :</label>
-                                                    <input type="text" name="name" class="form-control" id="Names" placeholder="Fellowship Project Name" autofocus required>
+                                                    <input type="text" name="name" class="form-control" id="Names" placeholder=" Project Name" autofocus required>
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
