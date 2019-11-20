@@ -35,7 +35,7 @@
         <div class="box-body">
           <div class="row">
             <div class="col-md-8">
-              <p class="text-center">
+              <p class="text-center" style="font-size: 20px;">
                 Today: <strong> {{ date('d / m / Y') }}, <span id="MyClockDisplay"></span> </strong>
               </p>
 
@@ -46,10 +46,10 @@
                 <div class="col-md-6">
                   <div class="panel">
                     <div class="panel-header">
-                      Current Projects
+                      <h3> - Post</h3>
                     </div>
                     <div class="panel-body">
-                      Hello
+                      Read the current post
                     </div>
                   </div>
                 </div>

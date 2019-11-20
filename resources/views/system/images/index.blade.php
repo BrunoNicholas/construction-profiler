@@ -19,7 +19,8 @@
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs pull-right">
                     <li class="active"><a href="#urevenue-chart" data-toggle="tab"> Images </a></li>
-                    <li class="pull-left header"><i class="fa fa-image text-info"></i><a href="{{ route('images.create') }}" class="btn btn-xs btn-info pull-left"><i class="fa-plus fa"></i> New</a></li>
+                    <li class="pull-left header"><i class="fa fa-image text-info"></i><a href="{{ route('images.create') }}" class="btn btn-xs btn-info pull-left"><i class="fa-plus fa"></i> New</a></li><!-- <?php $b=0; ?> -->
+                    <div class="pull-right" style="margin: 5px;">@foreach($galleries as $gallery) <a href="#{{ $gallery->id }}" class="btn btn-sm btn-default">{{ ++$b }}</a> @endforeach</div>
                 </ul>
                 <div class="tab-content padding">
                     <div class="chart tab-pane active" id="urevenue-chart" style="position: relative; height: 500px; overflow-y: auto;">
@@ -30,40 +31,51 @@
                                     @if(sizeof($images) < 1)
                                         <p class="col-md-12 alert alert-danger" style="padding-left: 50px;"> No image items found! </p>
                                     @endif
-                                    @foreach($images as $image)
-                                        <div class="col-md-3" style="padding-top: 10px;">
+                                    @foreach($galleries as $gallery)
+                                        <div id="{{ $gallery->id }}" class="col-md-12" style="border-bottom: thin solid #e6e6e6; padding-bottom: 5px;">
                                             <div class="card">
-                                                <div class="el-card-item">
-                                                    <div class="el-card-avatar el-overlay-1" style="text-align: center;"> 
-                                                        <div style="max-width: 450px; overflow-x: auto;">
-                                                            <img src="{{ asset('files/storage/images/'. $image->image) }}" alt="image" style=" height: 200px; width: auto;"/>
-                                                        </div>
-                                                        <div class="el-overlay">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <a class="text-center" href="{{ asset('files/storage/images/'. $image->image) }}" target="_blank">
-                                                                        <i class="fa fa-search-plus"></i> View
-                                                                    </a>
-                                                                </div>
-                                                                <div class="col-md-6" onclick="window.location='{{ route('images.edit',$image->id) }}'">
-                                                                    <i class="fa-edit fa text-success"></i> Edit
+                                                <div class="card-header text-center">
+                                                    <h4>{{ $gallery->gallery_name }}</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    @foreach($gallery->images as $image)
+                                                        <div class="col-md-3" style="padding-top: 10px;">
+                                                            <div class="card">
+                                                                <div class="el-card-item">
+                                                                    <div class="el-card-avatar el-overlay-1" style="text-align: center;"> 
+                                                                        <div style="max-width: 450px; overflow-x: auto;">
+                                                                            <img src="{{ asset('files/storage/images/'. $image->image) }}" alt="image" style=" height: 200px; width: auto;"/>
+                                                                        </div>
+                                                                        <div class="el-overlay">
+                                                                            <div class="row">
+                                                                                <div class="col-md-6">
+                                                                                    <a class="text-center" href="{{ asset('files/storage/images/'. $image->image) }}" target="_blank">
+                                                                                        <i class="fa fa-search-plus"></i> View
+                                                                                    </a>
+                                                                                </div>
+                                                                                <div class="col-md-6" onclick="window.location='{{ route('images.edit',$image->id) }}'">
+                                                                                    <i class="fa-edit fa text-success"></i> Edit
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="el-card-content">
+                                                                        <div class="row">
+                                                                            <div class="col-md-12">
+                                                                                <h4 class="block"><b class="pull-left">{{ substr($image->title, 0,15) }}..</b> <small class="pull-right">
+                                                                                    <form method="POST" action="{{ route('images.destroy', $image->id) }}">
+                                                                                        {{ csrf_field() }}
+                                                                                        {{ method_field('DELETE') }}
+                                                                                        <button type="submit" onclick="return confirm('This will delete your image and it\'s content complately. It is not reversible.\nIs this okay?')" class="btn btn-sm btn-block btn-danger">Delete</button>
+                                                                                    </form>
+                                                                                </small></h4>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="el-card-content">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <h4 class="block"><b class="pull-left">{{ substr($image->title, 0,15) }}..</b> <small class="pull-right">
-                                                                    <form method="POST" action="{{ route('images.destroy', $image->id) }}">
-                                                                        {{ csrf_field() }}
-                                                                        {{ method_field('DELETE') }}
-                                                                        <button type="submit" onclick="return confirm('This will delete your image and it\'s content complately. It is not reversible.\nIs this okay?')" class="btn btn-xs btn-block btn-danger">Delete</button>
-                                                                    </form>
-                                                                </small></h4>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>

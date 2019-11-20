@@ -18,7 +18,8 @@ class ImageController extends Controller
     public function index()
     {
         $images = Image::latest()->paginate(20);
-        return view('system.images.index',compact(['images']));
+        $galleries  = Gallery::latest()->paginate(50);
+        return view('system.images.index',compact(['images','galleries']));
     }
 
     /**
@@ -56,7 +57,7 @@ class ImageController extends Controller
             $user_image = $request->file('image');
             $filename = $fileWithoutExtension . '_' .time() . '.' . $user_image->getClientOriginalExtension();
 
-            IntervImage::make($user_image)->save( public_path('/files/storage/images/' . $filename) );
+            IntervImage::make($user_image)->save( public_path('files/storage/images/' . $filename) );
             // $path = $request->file('image')->storeAs('public/gallery/', $filename);
 
             $gallery_item->image = $filename;
@@ -101,7 +102,8 @@ class ImageController extends Controller
         if (!$image) {
             return back()->with('danger','image not found. It\'s either missing or deleted.');
         }
-        return view('system.images.show', compact(['image']));
+        $galleries  = Gallery::latest()->paginate(50);
+        return view('system.images.edit', compact(['image','galleries']));
     }
 
     /**
@@ -131,7 +133,7 @@ class ImageController extends Controller
             $user_image = $request->file('image');
             $filename = $fileWithoutExtension . '_' .time() . '.' . $user_image->getClientOriginalExtension();
 
-            IntervImage::make($user_image)->save( public_path('/files/storage/images/' . $filename) );
+            IntervImage::make($user_image)->save( public_path('files/storage/images/' . $filename) );
             // $path = $request->file('image')->storeAs('public/gallery/', $filename);
 
             $gallery_item->image = $filename;
