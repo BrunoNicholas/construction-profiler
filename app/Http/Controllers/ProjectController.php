@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Department;
 use Illuminate\Http\Request;
 use Image;
+use File;
 
 class ProjectController extends Controller
 {

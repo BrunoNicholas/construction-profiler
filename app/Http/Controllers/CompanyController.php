@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use Illuminate\Http\Request;
+use App\User;
+use Image;
+use File;
 
 class CompanyController extends Controller
 {
@@ -37,7 +40,23 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        request()->validate([
+        'company_name'  => 'required|unique:companies',
+        'company_email' => 'required|unique:companies',
+        'user_id'       => 'required',
+        'status'        => 'required',
+        ]);
+        Company::create($request->all());
+
+        if ($request->hasFile('company_logo')) {
+            $project_image = $request->file('company_logo');
+            $filename = time() . '.' . $project_image->getClientOriginalExtension();
+            Image::make($project_image)->resize(340, 340)->save( public_path('/files/companies/images/' . $filename) );
+            
+            $company = Company::where('name',$request->name)->get()->first();
+            $company->company_logo = $filename;
+            $company->save();
+        }
 
         $user = User::find($request->user_id);
         $user->role = 'company-admin';
@@ -45,6 +64,10 @@ class CompanyController extends Controller
 
         DB::table('role_user')->where('user_id',$request->user_id)->delete();
         $user->attachRole(Role::where('name','company-admin')->first());
+
+        $company = Company::where('company_email',$request->company_email)->first();
+
+        return redirect()->route('companies.show',$company->id)->with('success','Company profile created successfully.');
     }
 
     /**

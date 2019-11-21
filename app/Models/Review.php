@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\WorkerProfile;
+use App\Models\Company;
+use App\User;
 
 class Review extends Model
 {
@@ -31,7 +34,7 @@ class Review extends Model
      */
     public function users()
     {
-    	$this->belongsTo(User::class);
+    	return $this->belongsTo(User::class);
     }
 
     /*
@@ -39,7 +42,7 @@ class Review extends Model
      */
     public function companies()
     {
-    	$this->belongsTo(Company::class);
+    	return $this->belongsTo(Company::class);
     }
 
     /*
@@ -47,6 +50,6 @@ class Review extends Model
      */
     public function worker_profiles()
     {
-    	$this->belongsTo(WorkerProfile::class);
+    	return $this->belongsTo(WorkerProfile::class);
     }
 }

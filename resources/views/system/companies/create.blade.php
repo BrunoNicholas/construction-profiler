@@ -91,13 +91,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="desc_prof"> Profile Description : </label>
-                                                        <textarea name="company_description" rows="8" class="form-control" id="desc_prof" placeholder="Your company description for your profile."></textarea>
+                                                        <textarea name="company_description" rows="4" class="form-control" id="desc_prof" placeholder="Your company description for your profile."></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="desc_prof"> Profile Bio : </label>
-                                                        <textarea name="company_bio" rows="8" class="form-control" id="desc_prof" placeholder="Your company bio information."></textarea>
+                                                        <textarea name="company_bio" rows="4" class="form-control" id="desc_prof" placeholder="Your company bio information."></textarea>
                                                     </div>
                                                 </div>
                                             </div>

@@ -35,7 +35,7 @@ class WorkerProfile extends Model
 
     public function users()
     {
-        $this->belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
     /**

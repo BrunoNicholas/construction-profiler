@@ -39,7 +39,7 @@ class Company extends Model
 
     public function users()
     {
-    	$this->belongsTo(User::class);
+    	return $this->belongsTo(User::class);
     }
 
     /*
@@ -47,7 +47,7 @@ class Company extends Model
      */
     public function reviews()
     {
-    	$this->hasMany(Review::class);
+    	return $this->hasMany(Review::class);
     }
 
     /*
@@ -55,7 +55,7 @@ class Company extends Model
      */
     public function ratings()
     {
-    	$this->hasMany(Rating::class);
+    	return $this->hasMany(Rating::class);
     }
 
     /*
@@ -63,6 +63,6 @@ class Company extends Model
      */
     public function comments()
     {
-    	$this->hasMany(Comment::class);
+    	return $this->hasMany(Comment::class);
     }
 }

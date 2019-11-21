@@ -31,7 +31,7 @@ class Rating extends Model
      */
     public function users()
     {
-    	$this->belongsTo(User::class);
+    	return $this->belongsTo(User::class);
     }
 
     /*
@@ -39,7 +39,7 @@ class Rating extends Model
      */
     public function companies()
     {
-    	$this->belongsTo(Company::class);
+    	return $this->belongsTo(Company::class);
     }
 
     /*
@@ -47,6 +47,6 @@ class Rating extends Model
      */
     public function worker_profiles()
     {
-        $this->belongsTo(WorkerProfile::class);
+        return $this->belongsTo(WorkerProfile::class);
     }
 }
