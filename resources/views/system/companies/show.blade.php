@@ -112,20 +112,22 @@
                                 Administrator: <a href="{{ route('users.show',$company->user_id) }}"> {{ App\User::where('id',$company->user_id)->get()->first()->name }} </a>
                             </div>
                         </div>
-                        @role(['super-admin','admin'])
+                        @role(['super-admin','admin','company-admin','company-worker'])
                             <div class="col-md-6">
                                 <a href="{{ route('companies.edit', $company->id) }}" class="btn btn-info btn-sm btn-xs btn-block"><i class="fa fa-edit"></i> Edit company</a>
                             </div>
-                            <div class="col-md-6">
-                                <form method="POST" action="{{ route('companies.destroy', $company->id) }}">
-                                    {{ csrf_field() }}
-                                    {{ method_field('DELETE') }}
-                                    <div class="tools">
-                                        <button type="submit" class="btn btn-danger btn-xs btn-block"
-                                            onclick="return confirm('You are about to delete this company!\nThis is not reversible!')" title="This will delete this entire company"><i class="fa fa-trash"></i> Delete </button>
-                                    </div>
-                                </form>
-                            </div>
+                            @role(['super-admin','admin','company-admin','company-worker'])
+                                <div class="col-md-6">
+                                    <form method="POST" action="{{ route('companies.destroy', $company->id) }}">
+                                        {{ csrf_field() }}
+                                        {{ method_field('DELETE') }}
+                                        <div class="tools">
+                                            <button type="submit" class="btn btn-danger btn-xs btn-block"
+                                                onclick="return confirm('You are about to delete this company!\nThis is not reversible!')" title="This will delete this entire company"><i class="fa fa-trash"></i> Delete </button>
+                                        </div>
+                                    </form>
+                                </div>
+                                @endrole
                         @endrole
                     </div>
                 </div>

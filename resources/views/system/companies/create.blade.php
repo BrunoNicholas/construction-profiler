@@ -45,19 +45,19 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="file_item">Company Name :</label>
-                                                        <input type="text" name="company_name" class="form-control" id="file_item" placeholder="Your Profile Name">
+                                                        <input type="text" name="company_name" class="form-control" id="file_item" placeholder="Your Company Name">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="file_item">Company Email :</label>
-                                                        <input type="email" name="company_email" value="{{ Auth::user()->email }}" class="form-control" id="file_item" placeholder="Your Profile Email">
+                                                        <input type="email" name="company_email" value="{{ Auth::user()->email }}" class="form-control" id="file_item" placeholder="Your Comapny Email">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="file_item">Company Telephone :</label>
-                                                        <input type="text" name="company_telephone" value="{{ Auth::user()->telephone }}" class="form-control" id="file_item" placeholder="Your Profile Email">
+                                                        <input type="text" name="company_telephone" value="{{ Auth::user()->telephone }}" class="form-control" id="file_item" placeholder="Your Comapny Email">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
@@ -90,13 +90,13 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="desc_prof"> Profile Description : </label>
-                                                        <textarea name="company_description" rows="4" class="form-control" id="desc_prof" placeholder="Your company description for your profile."></textarea>
+                                                        <label for="desc_prof"> Comapny Description : </label>
+                                                        <textarea name="company_description" rows="4" class="form-control" id="desc_prof" placeholder="Your company description for your Comapny."></textarea>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
-                                                        <label for="desc_prof"> Profile Bio : </label>
+                                                        <label for="desc_prof"> Comapny Bio : </label>
                                                         <textarea name="company_bio" rows="4" class="form-control" id="desc_prof" placeholder="Your company bio information."></textarea>
                                                     </div>
                                                 </div>
@@ -104,8 +104,8 @@
                                         </div>
                                     </section>
                                     <div div class="col-md-12 text-center">
-                                        <a href="{{ route('profiles.index') }}" class="btn btn-rounded btn-info" style="min-width: 150px;">Back</a>
-                                        <button type="submit" class="btn btn-rounded btn-primary" style="min-width: 150px;"> Create Profile</button>
+                                        <a href="{{ route('companies.index') }}" class="btn btn-rounded btn-info" style="min-width: 150px;">Back</a>
+                                        <button type="submit" class="btn btn-rounded btn-primary" style="min-width: 150px;"> Create Comapny</button>
                                     </div>
                                 </form>
                             </div>
