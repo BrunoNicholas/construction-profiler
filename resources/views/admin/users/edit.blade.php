@@ -48,7 +48,7 @@
 						                    <label class="col-md-3 col-form-label text-right"> Full Names <span class="text-danger">*</span>
 						                    </label>
 						                    <div class="col-md-9">
-						                        <input type="text" class="form-control" name="name" autofocus required>
+						                        <input type="text" class="form-control" name="name" value="{{ $user->name }}" required>
 						                    </div>
 						                </div>
 
@@ -56,52 +56,54 @@
 						                    <label class="col-md-3 col-form-label text-right"> Email <span class="text-danger">*</span>
 						                    </label>
 						                    <div class="col-md-9">
-						                        <input type="email" class="form-control" name="email" required>
+						                        <input type="email" class="form-control" value="{{ $user->email }}" name="email" required>
 						                    </div>
 						                </div>
-
-						                <input type="hidden" name="password" value="{{ bcrypt('dollar') }}">
 
 						                <div class="form-group row">
 						                    <label class="col-md-3 col-form-label text-right"> Gender </label>
 						                    <div class="col-md-9">
-						                        <input type="radio" value="Male" name="gender" id="gMale"> <label for="gMale">Male </label>
-						                        <input type="radio" value="Female" name="gender" id="gFemale"> <label for="gFemale">Female </label>
+						                        <input type="radio" value="Male" name="gender" id="gMale" @if ($user->gender == 'Male')
+						                        	checked 
+						                        @endif> <label for="gMale">Male </label>
+						                        <input type="radio" value="Female" name="gender" id="gFemale" @if ($user->gender == 'Female')
+						                        	checked 
+						                        @endif> <label for="gFemale">Female </label>
 						                    </div>
 						                </div>
 
 						                <div class="form-group row">
 						                    <label class="col-md-3 col-form-label text-right"> Date Of Birth </label>
 						                    <div class="col-md-9">
-						                        <input type="date" class="form-control" name="date_of_birth">
+						                        <input type="date" class="form-control" name="date_of_birth" value="{{ $user->date_of_birth }}">
 						                    </div>
 						                </div>
 
 						                <div class="form-group row">
 						                    <label class="col-md-3 col-form-label text-right"> Telephone Number </label>
 						                    <div class="col-md-9">
-						                        <input type="text" class="form-control" name="telephone">
+						                        <input type="text" class="form-control" name="telephone" value="{{ $user->telephone }}">
 						                    </div>
 						                </div>
 
 						                <div class="form-group row">
 						                    <label class="col-md-3 col-form-label text-right"> Nationality </label>
 						                    <div class="col-md-9">
-						                        <input type="text" class="form-control" name="nationality">
+						                        <input type="text" class="form-control" name="nationality" value="{{ $user->nationality }}">
 						                    </div>
 						                </div>
 
 						                <div class="form-group row">
 						                    <label class="col-md-3 col-form-label text-right"> Occupation </label>
 						                    <div class="col-md-9">
-						                        <input type="text" class="form-control" name="occupation">
+						                        <input type="text" class="form-control" name="occupation" value="{{ $user->occupation }}">
 						                    </div>
 						                </div>
 
 						                <div class="form-group row">
 						                    <label class="col-md-3 col-form-label text-right"> Place of work </label>
 						                    <div class="col-md-9">
-						                        <input type="text" class="form-control" name="place_of_work">
+						                        <input type="text" class="form-control" name="place_of_work" value="{{ $user->place_of_work }}">
 						                    </div>
 						                </div>
 
@@ -110,7 +112,7 @@
 						                    </label>
 						                    <div class="col-md-9">
 				                                <select class="form-control custom-select" name="role">
-				                                    <option value="subscriber">Please select</option>
+				                                    <option  value="{{ $user->role }}">Please select</option>
 				                                    @foreach($roles as $role)
 				                                        <option value="{{ $role->name }}"><b>{{  $role->display_name . ' - ' . $role->description }}</b></option>
 				                                    @endforeach
@@ -121,31 +123,41 @@
 						                <div class="form-group row">
 						                    <label class="col-md-3 col-form-label text-right"> Work Address </label>
 						                    <div class="col-md-9">
-						                        <input type="text" class="form-control" name="work_address">
+						                        <input type="text" class="form-control" name="work_address" value="{{ $user->work_address }}">
 						                    </div>
 						                </div>
 
 						                <div class="form-group row">
 						                    <label class="col-md-3 col-form-label text-right"> Home Address </label>
 						                    <div class="col-md-9">
-						                        <input type="text" class="form-control" name="home_address">
+						                        <input type="text" class="form-control" name="home_address" value="{{ $user->home_address }}">
 						                    </div>
 						                </div>
 
 						                <div class="form-group row">
 						                    <label class="col-md-3 col-form-label text-right"> User Bio </label>
 						                    <div class="col-md-9">
-						                        <textarea class="form-control" name="bio"></textarea>
+						                        <textarea class="form-control" name="bio">{{ $user->name }}</textarea>
 						                    </div>
 						                </div>
 						                <div class="form-group row">
 						                    <label class="col-md-3 col-form-label text-right"> Account Status </label>
 						                    <div class="col-md-9">
-						                        <input type="radio" name="status" id="stat1" value="active"> <label for="stat1">Active </label>
-						                        <input type="radio" name="status" id="stat2" value="not active"> <label for="stat2">Not Active </label>
-						                        <input type="radio" name="status" id="stat3" value="available"> <label for="stat3">Available </label>
-						                        <input type="radio" name="status" id="stat4" value="pending" checked> <label for="stat4">Pending </label>
-						                        <input type="radio" name="status" id="stat5" value="blocked"> <label for="stat5">Blocked </label>
+						                        <input type="radio" name="status" id="stat1" value="active" @if ($user->status == 'active')
+						                        	checked 
+						                        @endif> <label for="stat1">Active </label>
+						                        <input type="radio" name="status" id="stat2" value="not active" @if ($user->status == 'not active')
+						                        	checked 
+						                        @endif> <label for="stat2">Not Active </label>
+						                        <input type="radio" name="status" id="stat3" value="available" @if ($user->status == 'available')
+						                        	checked 
+						                        @endif> <label for="stat3">Available </label>
+						                        <input type="radio" name="status" id="stat4" value="pending" @if ($user->status == 'pending')
+						                        	checked 
+						                        @endif> <label for="stat4">Pending </label>
+						                        <input type="radio" name="status" id="stat5" value="blocked" @if ($user->status == 'blocked')
+						                        	checked 
+						                        @endif> <label for="stat5">Blocked </label>
 						                    </div>
 						                </div>
 						            </div>

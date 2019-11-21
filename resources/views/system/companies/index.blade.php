@@ -38,11 +38,7 @@
                                   <div class="col-md-7">
                                       <a>
                                           <div class="panel  panel-hover text-center">
-                                              @if($company->description_image)
-                                                  <img class="panel-img-top img-responsive" src="{{ $company->company_logo ? asset('files/companies/images/' . $company->company_logo) : asset('assets/img/') }}" alt="Card image cap" style="height: 210px; width: auto; border-radius: 5px;">
-                                              @else
-                                                  <img class="panel-img-top img-responsive" src="{{ asset('start/images/icons/favicon.png') }}" alt="Card image cap" style="height: 200px; width: auto;">
-                                              @endif
+                                              <img class="panel-img-top img-responsive" src="{{ $company->company_logo ? asset('files/companies/images/' . $company->company_logo) : asset('start/images/icons/favicon.png') }}" alt="Card image cap" style="height: 210px; width: auto; border-radius: 5px;">
                                               <div class="panel-body">
                                                   <div class="d-flex no-block align-items-center m-b-15">
                                                       <span class="pull-left" title="Start date"><i class="fa fa-calendar"></i> {{ explode(' ', trim($company->created_at))[0] }} </span>

@@ -34,7 +34,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="chart tab-pane active" id="sales-chart" style="position: relative; height: 400px; border: thin solid red;">
+					<div class="chart tab-pane active" id="sales-chart" style="position: relative; height: 400px;">
 						<div class="col-lg-12">
 							<div class="row" style="padding: 5px;">
 								<div class="card">

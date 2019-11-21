@@ -128,6 +128,10 @@ class ProjectController extends Controller
         $project->status        = $request->status;
         $project->save();
         if ($request->hasFile('description_image')) {
+
+            $pathToImage = public_path('files/projects/images/').$project->description_image;
+            File::delete($pathToImage);
+
             $project_image = $request->file('description_image');
             $filename = time() . '.' . $project_image->getClientOriginalExtension();
             Image::make($project_image)->resize(340, 340)->save( public_path('/files/projects/images/' . $filename) );
@@ -148,6 +152,10 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         $item = Project::find($id);
+
+        $pathToImage = public_path('files/projects/images/').$item->description_image;
+        File::delete($pathToImage);
+
         $item->delete();
         return redirect()->route('projects.index')->with('danger', 'Project Deleted Successfully');
     }
