@@ -35,7 +35,7 @@
                                         <div id="{{ $gallery->id }}" class="col-md-12" style="border-bottom: thin solid #e6e6e6; padding-bottom: 5px;">
                                             <div class="card">
                                                 <div class="card-header text-center">
-                                                    <h4>{{ $gallery->gallery_name }}</h4>
+                                                    <h3>{{ $gallery->gallery_name }}</h3>
                                                 </div>
                                                 <div class="card-body">
                                                     @foreach($gallery->images as $image)

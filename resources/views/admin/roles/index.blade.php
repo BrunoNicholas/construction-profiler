@@ -12,7 +12,7 @@
 @endsection
 @section('content')
 	<div class="row">
-        <section class="col-lg-9 connectedSortable">
+        <section class="col-lg-10 connectedSortable">
             <div class="nav-tabs-custom">
                 <ul class="nav nav-tabs pull-right">
                     <li class="active"><a href="#urevenue-chart" data-toggle="tab"> User Roles </a></li>
@@ -24,7 +24,7 @@
                         	<div class="card-heading">
 								<h4>System Roles</h4>
 							</div>
-							<div class="card-body"  style="overflow-y: auto;">
+							<div class="card-body"  style="max-height: 390px; overflow-y: auto;">
 								<table  id="example1" class="table table-bordered table-striped">
 
 										@if($message = Session::get('success'))

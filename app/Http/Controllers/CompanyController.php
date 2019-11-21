@@ -38,6 +38,13 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         //
+
+        $user = User::find($request->user_id);
+        $user->role = 'company-admin';
+        $user->save();
+
+        DB::table('role_user')->where('user_id',$request->user_id)->delete();
+        $user->attachRole(Role::where('name','company-admin')->first());
     }
 
     /**
@@ -92,6 +99,14 @@ class CompanyController extends Controller
     {
         $item = Company::find($id);
         $item->delete();
+
+        $user = User::find($id);
+        $user->role = 'subscriber';
+        $user->save();
+
+        DB::table('role_user')->where('user_id',$id)->delete();
+        $user->attachRole(Role::where('name','subscriber')->first());
+        
         return redirect()->route('companies.index')->with('danger', 'Company deleted successfully');
     }
 }

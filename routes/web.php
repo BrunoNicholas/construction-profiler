@@ -42,7 +42,6 @@ Route::group(['prefix' => 'home', 'middleware' => ['auth','verified']], function
 	Route::resource('{type}/{id}/reviews', 'ReviewController');
 	Route::resource('{type}/{id}/ratings', 'RatingController');
 
-
 	Route::resource('companies', 'CompanyController');
 	Route::resource('user/profile/workprofiles', 'WorkerProfileController');
 	Route::resource('user/departments/projects/profiles', 'WorkerProfileController');

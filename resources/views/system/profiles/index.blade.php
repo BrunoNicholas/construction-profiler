@@ -25,9 +25,6 @@
                 <div class="tab-content padding">
                     <div class="chart tab-pane active" id="urevenue-chart" style="position: relative; height: 500px; overflow-y: auto;">
                         <div class="card">
-                            <div class="box-header">
-                                  <h3 class="box-title">{{ config('app.name') }} Departments</h3>
-                                </div>
                                 <!-- /.box-header -->
                                 <div class="box-body">
                                     <table id="example1" class="table table-bordered table-striped">

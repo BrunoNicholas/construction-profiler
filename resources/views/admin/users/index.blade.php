@@ -27,21 +27,21 @@
 									<div class="card-heading">
 										<h4>User's Options</h4>
 									</div>
-									<div class="card-body" style="max-height: 255px; overflow-y: auto;">
+									<div class="card-body" style="max-height: 390px; overflow-y: auto;">
 										<a href="{{ route('users.create') }}" class="btn btn-primary"><i class="fa fa-plus"></i> Add New User </a>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="chart tab-pane active" id="sales-chart" style="position: relative; height: 400px;">
+					<div class="chart tab-pane active" id="sales-chart" style="position: relative; height: 400px; border: thin solid red;">
 						<div class="col-lg-12">
 							<div class="row" style="padding: 5px;">
 								<div class="card">
 									<div class="card-heading">
 										<h4>System Users</h4>
 									</div>
-									<div class="card-body"  style="max-height: 255px; overflow-y: auto;">
+									<div class="card-body"  style="max-height: 390px; overflow-y: auto;">
 										<table  id="example1" class="table table-bordered table-striped">
 											<thead>
 												<tr>

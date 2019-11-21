@@ -43,6 +43,14 @@ class WorkerProfileController extends Controller
             'status'        => 'required',
         ]);
         WorkerProfile::create($request->all());
+
+        $user = User::find($request->user_id);
+        $user->role = 'free-lancer';
+        $user->save();
+
+        DB::table('role_user')->where('user_id',$request->user_id)->delete();
+        $user->attachRole(Role::where('name','free-lancer')->first());
+
         return route('profiles.index')->with('success','Your worker profile has been created successfully!');
     }
 
@@ -98,6 +106,14 @@ class WorkerProfileController extends Controller
     {
         $item = WorkerProfile::find($id);
         $item->delete();
+
+        $user = User::find($id);
+        $user->role = 'subscriber';
+        $user->save();
+
+        DB::table('role_user')->where('user_id',$id)->delete();
+        $user->attachRole(Role::where('name','subscriber')->first());
+
         return redirect()->route('profiles.index')->with('danger', 'Worker profile deleted successfully');
     }
 }
