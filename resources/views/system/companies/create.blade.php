@@ -23,7 +23,7 @@
                         <div class="card">
                             <div class="card-header"><h4 style="width: 100%; text-align: center;"> Add Company </h4></div>
                             <div class="card-body">
-                                <form action="{{ route('companies.store') }}" method="POST">
+                                <form action="{{ route('companies.store') }}" enctype="multipart/form-data" method="POST">
                                     @csrf
 
                                     @foreach ($errors->all() as $error)
@@ -51,13 +51,13 @@
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="file_item">Company Email :</label>
-                                                        <input type="email" name="company_email" class="form-control" id="file_item" placeholder="Your Profile Email">
+                                                        <input type="email" name="company_email" value="{{ Auth::user()->email }}" class="form-control" id="file_item" placeholder="Your Profile Email">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="file_item">Company Telephone :</label>
-                                                        <input type="text" name="company_telephone" class="form-control" id="file_item" placeholder="Your Profile Email">
+                                                        <input type="text" name="company_telephone" value="{{ Auth::user()->telephone }}" class="form-control" id="file_item" placeholder="Your Profile Email">
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">

@@ -39,22 +39,20 @@
                                                 </div>
                                                 <div class="card-body">
                                                     @foreach($gallery->images as $image)
-                                                        <div class="col-md-3" style="padding-top: 10px;">
-                                                            <div class="card">
+                                                        <div class="col-md-3" style="padding-top: 10px;" onclick="window.location='{{ route('images.show',$image->id) }}'">
+                                                            <div class="card" style="border: thin solid transparent;">
                                                                 <div class="el-card-item">
                                                                     <div class="el-card-avatar el-overlay-1" style="text-align: center;"> 
                                                                         <div style="max-width: 450px; overflow-x: auto;">
-                                                                            <img src="{{ asset('files/storage/images/'. $image->image) }}" alt="image" style=" height: 200px; width: auto;"/>
+                                                                            <img src="{{ asset('files/storage/images/'. $image->image) }}" alt="image" style=" height: 200px; width: auto; border-radius: 3px;"/>
                                                                         </div>
                                                                         <div class="el-overlay">
                                                                             <div class="row">
                                                                                 <div class="col-md-6">
-                                                                                    <a class="text-center" href="{{ asset('files/storage/images/'. $image->image) }}" target="_blank">
-                                                                                        <i class="fa fa-search-plus"></i> View
-                                                                                    </a>
+                                                                                    {{ explode(' ',trim($image->created_at))[1] }}
                                                                                 </div>
-                                                                                <div class="col-md-6" onclick="window.location='{{ route('images.edit',$image->id) }}'">
-                                                                                    <i class="fa-edit fa text-success"></i> Edit
+                                                                                <div class="col-md-6">
+                                                                                    {{ explode(' ',trim($image->created_at))[0] }}
                                                                                 </div>
                                                                             </div>
                                                                         </div>
@@ -62,13 +60,15 @@
                                                                     <div class="el-card-content">
                                                                         <div class="row">
                                                                             <div class="col-md-12">
-                                                                                <h4 class="block"><b class="pull-left">{{ substr($image->title, 0,15) }}..</b> <small class="pull-right">
-                                                                                    <form method="POST" action="{{ route('images.destroy', $image->id) }}">
-                                                                                        {{ csrf_field() }}
-                                                                                        {{ method_field('DELETE') }}
-                                                                                        <button type="submit" onclick="return confirm('This will delete your image and it\'s content complately. It is not reversible.\nIs this okay?')" class="btn btn-sm btn-block btn-danger">Delete</button>
-                                                                                    </form>
-                                                                                </small></h4>
+                                                                                <h4 class="block">
+                                                                                    <b class="pull-left">{{ substr($image->title, 0,15) }} 
+                                                                                        <small>
+                                                                                        </small>
+                                                                                    </b> 
+                                                                                    <small class="pull-right">
+                                                                                        
+                                                                                    </small>
+                                                                                </h4>
                                                                             </div>
                                                                         </div>
                                                                     </div>

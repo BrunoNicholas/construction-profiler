@@ -43,11 +43,11 @@
                 <div class="box-body">
                     <div class="row text-center">
                         <div class="col-md-12">
-                            <img src="{{ $company->company_logo ? asset('files/companies/images/' . $company->company_logo) : asset('start/images/icons/favicon.png') }}" alt="company image" style="border-radius: 3px;">
+                            <img src="{{ $company->company_logo ? asset('files/companies/images/' . $company->company_logo) : asset('start/images/icons/favicon.png') }}" alt="company image" style="border-radius: 3px; width: 100%;">
                         </div>
                         <div class="col-md-12" style="margin-top: 5px; margin-bottom: 5px;">
                             <div class="form-control">
-                                Created By: <a href="{{ route('users.show',$company->user_id) }}"> {{ App\User::where('id',$company->user_id)->get()->first()->name }} </a>
+                                Administrator: <a href="{{ route('users.show',$company->user_id) }}"> {{ App\User::where('id',$company->user_id)->get()->first()->name }} </a>
                             </div>
                         </div>
                         @role(['super-admin','admin'])

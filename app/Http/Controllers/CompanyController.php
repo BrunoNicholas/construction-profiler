@@ -48,28 +48,50 @@ class CompanyController extends Controller
         'user_id'       => 'required',
         'status'        => 'required',
         ]);
-        Company::create($request->all());
 
-        if ($request->hasFile('company_logo')) {
-            $project_image = $request->file('company_logo');
-            $filename = time() . '.' . $project_image->getClientOriginalExtension();
-            Image::make($project_image)->resize(340, 340)->save( public_path('/files/companies/images/' . $filename) );
+        $company = new Company();
+        // if ($request->hasFile('company_logo')) {
+        //     $project_image = $request->file('company_logo');
+        //     $filename = time() . '.' . $project_image->getClientOriginalExtension();
+        //     Image::make($project_image)->save( public_path('/files/companies/images/' . $filename) );
             
-            $company = Company::where('name',$request->name)->get()->first();
-            $company->company_logo = $filename;
+        //     $company = Company::where('company_email',$request->company_email)->get()->first();
+        //     $company->company_logo = $filename;
+        //     $company->save();
+        // }
+
+        if ($request->file('company_logo')->isValid()) {
+            $fileWithExtension = $request->file('company_logo')->getClientOriginalName();
+            $fileWithoutExtension = pathinfo($fileWithExtension, PATHINFO_FILENAME);
+
+            $comp_image = $request->file('company_logo');
+            $filename = $fileWithoutExtension . '_' .time() . '.' . $comp_image->getClientOriginalExtension();
+
+            Image::make($comp_image)->save( public_path('/files/companies/images/' . $filename) );
+
+            $company->company_name  = $request->company_name;
+            $company->company_email = $request->company_email;
+            $company->company_logo  = $filename;
+            $company->user_id       = $request->user_id;
+            $company->company_telephone     = $request->company_telephone;
+            $company->company_location      = $request->company_location;
+            $company->company_description   = $request->company_description;
+            $company->company_bio   = $request->company_bio;
+            $company->status        = $request->status;
             $company->save();
+
+
+            $user = User::find($request->user_id);
+            $user->role = 'company-admin';
+            $user->save();
+
+            DB::table('role_user')->where('user_id',$request->user_id)->delete();
+            $user->attachRole(Role::where('name','company-admin')->first());
+
+            $new_company = Company::where('company_email',$request->company_email)->first(); 
+            return redirect()->route('companies.show',$new_company->id)->with('success','Company profile created successfully.');
         }
-
-        $user = User::find($request->user_id);
-        $user->role = 'company-admin';
-        $user->save();
-
-        DB::table('role_user')->where('user_id',$request->user_id)->delete();
-        $user->attachRole(Role::where('name','company-admin')->first());
-
-        $company = Company::where('company_email',$request->company_email)->first();
-
-        return redirect()->route('companies.show',$company->id)->with('success','Company profile created successfully.');
+        return back()->with('danger','You have not attached an image.\n Please do so and try again');
     }
 
     /**

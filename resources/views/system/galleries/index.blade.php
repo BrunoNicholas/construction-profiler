@@ -29,49 +29,37 @@
                                         <p class="col-md-12 alert alert-danger" style="padding-left: 50px;"> No gallery items found! </p>
                                     @endif
                                     @foreach($galleries as $gallery)
-                                        <div class="col-md-4" style="padding-top: 10px;">
-                                            <div class="card">
-                                                <div class="el-card-item">
-                                                    <div class="el-card-avatar el-overlay-1" style="text-align: center;"> 
-                                                        <div style="max-width: 450px; overflow-x: auto;">
-                                                            <img src="{{ asset('files/storage/images/'. $gallery->image) }}" alt="image" style=" height: 200px; width: auto;"/>
+                                        <div class="col-md-4" style="padding-top: 10px;" onclick="window.location='{{ route('galleries.show', $gallery->id) }}'">
+                                    <div class="card" style="border: thin solid transparent;">
+                                        <div class="el-card-item">
+                                            <div class="el-card-avatar el-overlay-1" style="text-align: center;"> 
+                                                <div style="max-width: 450px; overflow-x: auto;">
+                                                    <img src="{{ asset('files/storage/images/'. $gallery->image) }}" alt="image" style=" height: 200px; width: auto; border-radius: 5px;"/>
+                                                </div>
+                                                <div class="el-overlay">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <span>{{ explode(' ', trim($gallery->created_at))[0] }}</span>
                                                         </div>
-                                                        <div class="el-overlay">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <a class="text-center" href="{{ asset('files/storage/images/'. $gallery->image) }}" target="_blank">
-                                                                        <i class="fa fa-search-plus"></i> View Image
-                                                                    </a>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <a href="{{ route('galleries.show', $gallery->id) }}" title="Album Details and Photos">
-                                                                        <i class="fa fa-link"></i> View Album
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="el-card-content">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <h4 class="block"><b class="pull-left">{{ $gallery->gallery_name }}</b> <small class="pull-right">{{ $gallery->title }}</small></h4>
-                                                            </div>                                                        
-                                                            <div class="col-md-8">
-                                                                <span class="text-muted"> Total </span> | 
-                                                                <span class="text-muted"> {{ $gallery->images->count() }} Photos </span>
-                                                            </div>
-                                                            <div class="col-md-4">
-                                                                <form method="POST" action="{{ route('galleries.destroy', $gallery->id) }}">
-                                                                    {{ csrf_field() }}
-                                                                    {{ method_field('DELETE') }}
-                                                                    <button type="submit" onclick="return confirm('This will delete your album and it\'s image complately. It is not reversible.\nIs this okay?')" class="btn btn-xs btn-block btn-danger">Delete Album</button>
-                                                                </form>
-                                                            </div>
+                                                        <div class="col-md-6">
+                                                            <span class="text-muted"> {{ $gallery->images->count() }} Photos </span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class="el-card-content">
+                                                <div class="row">                                                    
+                                                    <div class="col-md-4 pull-left">
+                                                        
+                                                    </div>
+                                                    <div class="col-md-8 pull-right">
+                                                        
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
+                                    </div>
+                                </div>
                                     @endforeach
                                 </div>
                             </div>
