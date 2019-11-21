@@ -21,10 +21,72 @@
                 <div class="tab-content padding">
                     <div class="chart tab-pane active" id="urevenue-chart" style="position: relative; height: 500px; overflow-y: auto;">
                         <div class="card">
-
-                        	<div class="card-header"><h4 style="width: 100%; text-align: center;"> View Company </h4></div>
+                        	<div class="card-header"></div>
                             <div class="card-body">
-
+                                <div class="table-responsive">
+                                    <table class="table m-b-0 text-left">
+                                        <?php $i=0; ?>
+                                        <tbody>
+                                            @if($company->company_name)
+                                                <tr>
+                                                    <th style="text-align: right; max-width: 100px;">Company Name: </th>
+                                                    <td style="text-align: left;">{{ $company->company_name }}</td>
+                                                </tr>
+                                            @endif
+                                            @if($company->company_email)
+                                                <tr>
+                                                    <th style="text-align: right; max-width: 100px;">Company Email: </th>
+                                                    <td style="text-align: left;">{{ $company->company_email }}</td>
+                                                </tr>
+                                            @endif
+                                            @if($company->company_telephone)
+                                                <tr>
+                                                    <th style="text-align: right; max-width: 100px;">Telephone Number: </th>
+                                                    <td style="text-align: left;">{{ $company->company_telephone }}</td>
+                                                </tr>
+                                            @endif
+                                            @if($company->company_location)
+                                                <tr>
+                                                    <th style="text-align: right; max-width: 100px;">Location: </th>
+                                                    <td style="text-align: left;">{{ $company->company_location }}</td>
+                                                </tr>
+                                            @endif
+                                            @if($company->user_id)
+                                                <tr>
+                                                    <th style="text-align: right; max-width: 100px;">Administrator: </th>
+                                                    <td style="text-align: left;">
+                                                        <a href="{{ route('users.show',$company->user_id) }}" target="_blank">
+                                                            <img src="{{ asset('files/profile/images/' . App\User::where('id',$company->user_id)->first()->profile_image) }}" style="width: 30px; border-radius: 50%;" alt="author"> 
+                                                            {{ App\User::where('id',$company->user_id)->first()->name }}
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                            @if($company->status)
+                                                <tr>
+                                                    <th style="text-align: right; max-width: 100px;"> company Status: </th>
+                                                    <td style="text-align: left; text-transform: capitalize;">{{ $company->status }}</td>
+                                                </tr>
+                                            @endif
+                                            @if($company->company_description)
+                                                <tr>
+                                                    <th style="text-align: right; max-width: 100px;">Description: </th>
+                                                    <td style="text-align: left;">
+                                                        <textarea class="form-control" disabled style="background-color: #fff; border: thin solid transparent;">{{ $company->company_description }}</textarea>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                            @if($company->company_bio)
+                                                <tr>
+                                                    <th style="text-align: right; max-width: 100px;">Bio: </th>
+                                                    <td style="text-align: left;">
+                                                        <textarea class="form-control" disabled style="background-color: #fff; border: thin solid transparent;">{{ $company->company_bio }}</textarea>
+                                                    </td>
+                                                </tr>
+                                            @endif
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
