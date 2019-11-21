@@ -111,7 +111,6 @@
                                 Added By: <a href="{{ route('users.show',$image->user_id) }}"> {{ App\User::where('id',$image->user_id)->get()->first()->name }} </a>
                             </div>
                         </div>
-                        @role(['super-admin','admin'])
                             <div class="col-md-6">
                                 <a href="{{ route('images.edit', $image->id) }}" class="btn btn-info btn-sm btn-xs btn-block"><i class="fa fa-edit"></i> Edit image</a>
                             </div>
@@ -125,7 +124,6 @@
                                     </div>
                                 </form>
                             </div>
-                        @endrole
                     </div>
                 </div>
             </div>
