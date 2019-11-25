@@ -69,7 +69,19 @@ class WorkerProfileController extends Controller
         if (!$profile) {
             return back()->with('danger','Worker profile not found. It\'s either missing or deleted.' );
         }
-        return view('system.profiles.show',compact(['profile']));
+
+        $total_ratings  = $profile->ratings->count();
+        $avg_avs     = 0;
+        if ($total_ratings > 0) {
+                foreach ($profile->ratings as $rat) {
+                $avg_avs += $rat->rate_number;
+            }
+            $avg    = $avg_avs/$total_ratings;
+        } else {
+            $avg    = $avg_avs;
+        }
+
+        return view('system.profiles.show',compact(['profile', 'avg']));
     }
 
     /**

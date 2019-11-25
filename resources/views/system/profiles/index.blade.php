@@ -33,12 +33,26 @@
                                                 <th class="text-center">Profile Owner</th>
                                                 <th class="text-center">Category</th>
                                                 <th class="text-center">Description</th>
+                                                <th class="text-center">Ratings</th>
                                                 <th class="text-center">Status</th>
                                                 <th class="text-center">Options</th>
                                             </tr>
                                         </thead>
                                         <tbody><?php $i=0; ?>
                                             @foreach($profiles as $profile)
+                                            <!--<?php
+                                                    $total_ratings  = $profile->ratings->count();
+                                                    $avg_avs     = 0;
+                                                    if ($total_ratings > 0) {
+                                                        foreach ($profile->ratings as $rat) {
+                                                        $avg_avs += $rat->rate_number;
+                                                    }
+                                                    
+                                                    $avg    = $avg_avs/$total_ratings;
+                                                    } else {
+                                                        $avg    = $avg_avs;
+                                                    }
+                                                ?>-->
                                                 <tr>
                                                     <td class="text-center" onclick="window.location='{{ route('users.show',$profile->user_id) }}'">
                                                         <div style="max-width: 450px; overflow-x: auto;">
@@ -46,13 +60,16 @@
                                                         </div>
                                                         <div><span class="text-primary"><i class="fa-user fa"></i> {{ App\User::where('id',$profile->user_id)->first()->name }}</span></div>
                                                     </td>
-                                                    <td style="vertical-align: middle;">
+                                                    <td style="vertical-align: middle;" onclick="window.location='{{ route('profiles.show', $profile->id) }}'">
                                                         {{ $profile->profile_category }}
                                                     </td>
-                                                    <td style="vertical-align: middle;">
+                                                    <td style="vertical-align: middle;" onclick="window.location='{{ route('profiles.show', $profile->id) }}'">
                                                         {{ $profile->profile_description }}
                                                     </td>
-                                                    <td style="vertical-align: middle;">
+                                                    <td style="vertical-align: middle; text-align: center;" onclick="window.location='{{ route('profiles.show', $profile->id) }}'">
+                                                        {{ $avg }} Stars
+                                                    </td>
+                                                    <td style="vertical-align: middle; text-align: center;" onclick="window.location='{{ route('profiles.show', $profile->id) }}'">
                                                         @if($profile->status == 'Active')
                                                             <span class="btn-xs btn-round label label-success">{{ $profile->status }}</span>
                                                         @elseif($profile->status == 'Pending')

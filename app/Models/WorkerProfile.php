@@ -53,7 +53,7 @@ class WorkerProfile extends Model
      */
     public function reviews()
     {
-        $this->hasMany(Review::class);
+        return $this->hasMany(Review::class);
     }
 
     /*
@@ -61,6 +61,6 @@ class WorkerProfile extends Model
      */
     public function ratings()
     {
-        $this->hasMany(Rating::class);
+        return $this->hasMany(Rating::class);
     }
 }
