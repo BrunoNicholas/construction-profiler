@@ -94,10 +94,23 @@ class CompanyController extends Controller
     public function show($id)
     {
         $company = Company::find($id);
+
         if (!$company) {
             return back()->with('danger','Company not found. It\'s missing or deleted.');
         }
-        return view('system.companies.show',compact(['company']));
+
+        $total_ratings  = $company->ratings->count();
+        $avg_avs     = 0;
+        if ($total_ratings > 0) {
+                foreach ($company->ratings as $rat) {
+                $avg_avs += $rat->rate_number;
+            }
+            $avg    = $avg_avs/$total_ratings;
+        } else {
+            $avg    = $avg_avs;
+        }
+
+        return view('system.companies.show',compact(['company', 'avg']));
     }
 
     /**

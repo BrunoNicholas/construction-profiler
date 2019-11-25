@@ -3,7 +3,7 @@
 @section('title') View Company @endsection
 @section('styles')
     <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
+
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
     {{-- above is the rating --}}
@@ -58,6 +58,14 @@
                                                 <tr>
                                                     <th style="text-align: right; max-width: 100px;">Location: </th>
                                                     <td style="text-align: left;">{{ $company->company_location }}</td>
+                                                </tr>
+                                            @endif
+                                            @if($company->ratings)
+                                                <tr>
+                                                    <th style="text-align: right; max-width: 100px;">Rating</th>
+                                                    <td style="text-align: left; font-size: 10px;">
+                                                        <input name="rate_number" class="rating" data-min="0" data-max="5" data-step="0.1" value="{{ $avg }}" disabled>
+                                                    </td>
                                                 </tr>
                                             @endif
                                             @if($company->user_id)
@@ -214,7 +222,7 @@
                                                                         <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
                                                                         <input type="hidden" name="company_id" value="{{ $company->id }}">
                                                                         <input type="hidden" name="status" value="Approved">
-                                                                        <textarea id="mymce" name="review_message" class="form-control" autofocus required></textarea>
+                                                                        <textarea id="mymce" name="review_message" class="form-control" required></textarea>
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-12" style="padding: 5px; padding-right: 15px;">
