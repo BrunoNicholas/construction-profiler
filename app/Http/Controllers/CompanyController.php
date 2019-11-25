@@ -50,15 +50,6 @@ class CompanyController extends Controller
         ]);
 
         $company = new Company();
-        // if ($request->hasFile('company_logo')) {
-        //     $project_image = $request->file('company_logo');
-        //     $filename = time() . '.' . $project_image->getClientOriginalExtension();
-        //     Image::make($project_image)->save( public_path('/files/companies/images/' . $filename) );
-            
-        //     $company = Company::where('company_email',$request->company_email)->get()->first();
-        //     $company->company_logo = $filename;
-        //     $company->save();
-        // }
 
         if ($request->file('company_logo')->isValid()) {
             $fileWithExtension = $request->file('company_logo')->getClientOriginalName();

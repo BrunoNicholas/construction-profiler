@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\WorkerProfile;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use App\Models\Role;
+use App\User;
 
 class WorkerProfileController extends Controller
 {

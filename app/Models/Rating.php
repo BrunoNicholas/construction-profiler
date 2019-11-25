@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\WorkerProfile;
+use App\Models\Company;
+use App\User;
 
 class Rating extends Model
 {

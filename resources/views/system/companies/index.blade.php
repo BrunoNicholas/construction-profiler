@@ -14,7 +14,7 @@
 @endsection
 @section('content')
 	<div class="row">
-		<section class="col-lg-9 connectedSortable">
+		<section class="col-lg-12 connectedSortable">
 			<div class="nav-tabs-custom">
 				<ul class="nav nav-tabs pull-right">
 					<li class="active"><a href="#urevenue-chart" data-toggle="tab"> Companies </a></li>

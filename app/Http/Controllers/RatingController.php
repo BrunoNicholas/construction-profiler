@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Rating;
 use Illuminate\Http\Request;
+use App\Models\WorkerProfile;
+use App\Models\Company;
+use App\User;
 
 class RatingController extends Controller
 {
@@ -14,7 +17,28 @@ class RatingController extends Controller
      */
     public function index()
     {
-        //
+        if ($type == 'company') {
+            $company = Company::find($id);
+            $ratings   = $company->ratings;
+            return view('system.ratings.index',compact(['ratings','type','id']));
+        }
+        elseif ($type == 'profile') {
+            $profile = WorkerProfile::find($id);
+            $comments   = $profile->comments;
+            return view('system.comments.index',compact(['comments','type','id']));
+        }
+        elseif ($type == 'company') {
+            $company = Company::find($id);
+            $comments   = $company->comments;
+            return view('system.comments.index',compact(['comments','type','id']));
+        }
+        elseif ($type == 'project') {
+            $project = Project::find($id);
+            $comments   = $project->comments;
+            return view('system.comments.index',compact(['comments','type','id']));
+        }
+        $comments = Comment::all();
+        return view('system.comments.index',compact(['comments','type','id']));
     }
 
     /**
