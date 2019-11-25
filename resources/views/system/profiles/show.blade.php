@@ -190,7 +190,7 @@
                                                             @endif
                                                         @endrole
                                                     @endforeach
-                                                    @if(sizeof($profile->reviews) < 1) No Reviews Yet! @endif
+                                                    @if(sizeof($profile->reviews) < 1) <i class="text-danger text-center">No Reviews Yet!</i> @endif
                                                 </ul>
                                             </div>
                                             <div class="col-md-12">
