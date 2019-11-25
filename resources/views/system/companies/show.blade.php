@@ -60,14 +60,6 @@
                                                     <td style="text-align: left;">{{ $company->company_location }}</td>
                                                 </tr>
                                             @endif
-                                            @if($company->ratings)
-                                                <tr>
-                                                    <th style="text-align: right; max-width: 100px;">Rating</th>
-                                                    <td style="text-align: left; font-size: 10px;">
-                                                        <input name="rate_number" class="rating" data-min="0" data-max="5" data-step="0.1" value="{{ $avg }}" disabled>
-                                                    </td>
-                                                </tr>
-                                            @endif
                                             @if($company->user_id)
                                                 <tr>
                                                     <th style="text-align: right; max-width: 100px;">Administrator: </th>
@@ -101,6 +93,14 @@
                                                     </td>
                                                 </tr>
                                             @endif
+                                            @if($company->ratings)
+                                                <tr>
+                                                    <th style="text-align: right; max-width: 100px;">Rating</th>
+                                                    <td style="text-align: left; font-size: 10px;">
+                                                        <input name="rate_number" class="rating" data-min="0" data-max="5" data-step="0.1" value="{{ $avg }}" disabled>
+                                                    </td>
+                                                </tr>
+                                            @endif
                                         </tbody>
                                     </table>
                                 </div>
@@ -110,26 +110,33 @@
                                     </div>
                                     <div class="box-body">
                                         <div class="row text-center">
-                                            <div class="col-md-6">
+                                            <div class="col-md-6" style="border-bottom: thin solid #e6e6e6;">
                                                 {{ $company->reviews->count() }} Reviews
                                             </div>
-                                            <div class="col-md-6">
-                                                Rating: {{ $company->ratings->count() }} Start
+                                            <div class="col-md-6" style="border-bottom: thin solid #e6e6e6;">
+                                                Rating: {{ $avg }} Stars
                                             </div>
-                                            <div class="col-md-12">
+                                            <div class="col-md-12 text-left">
                                                 <ul class="list-unstyled m-t-40">
                                                     <?php $i=0; ?>
                                                     @foreach($company->reviews as $review)
-                                                        @if($review->status == 'Approved' || $review->responder == Auth::user()->id)
+                                                        @if($review->status == 'Approved' || $review->user_id == Auth::user()->id)
                                                             @if($i != 0) <hr> @endif
                                                             <!-- {{ ++$i }} -->
                                                             <li class="media">
-                                                                <img class="m-r-15" @if($review->responder) src="{{ asset('files/profile/images/' . (App\User::where('id',$review->responder)->get()->first())->profile_image) }}" @else src="{{ asset('files/profile/images/profile.jpg') }}" @endif width="60" alt="Generic placeholder image">
+                                                                <img class="m-r-15" @if($review->user_id) src="{{ asset('files/profile/images/' . (App\User::where('id',$review->user_id)->get()->first())->profile_image) }}" @else src="{{ asset('files/profile/images/profile.jpg') }}" @endif width="60" alt="Generic placeholder image">
                                                                 <div class="media-body">
-                                                                    <h5 class="mt-0 mb-1">@if($review->responder) {{ (App\User::where('id',$review->responder)->get()->first())->name }} @else Anonymous @endif </h5> 
-                                                                    {{ $review->review }} <br>
-                                                                    {{ $review->created_at }}
-                                                                    @if($review->responder == Auth::user()->id)
+                                                                    <div class="row">
+                                                                        <div class="col-md-6">
+                                                                            <h5 class="mt-0 mb-1">@if($review->user_id) {{ (App\User::where('id',$review->user_id)->get()->first())->name }} @else Anonymous @endif </h5> 
+                                                                            <b>Date:</b> {{ explode(' ', trim($review->created_at))[0] }}, <b>Time:</b> {{ explode(' ', trim($review->created_at))[1] }}
+                                                                        </div>
+                                                                        <div class="col-md-6">
+                                                                            {{ $review->review_message }}
+                                                                        </div>
+                                                                    </div>
+
+                                                                    @if($review->user_id == Auth::user()->id)
                                                                         @if($review->status == 'Approved')
                                                                             <span class="label label-success btn-xs btn-rounded">{{ $review->status }}</span>
                                                                         @elseif($review->status == 'Pending')
@@ -156,14 +163,14 @@
                                                             </li>                                
                                                         @endif
                                                         @role(['super-admin','admin'])
-                                                            @if($review->status != 'Approved' && $review->responder != Auth::user()->id)
+                                                            @if($review->status != 'Approved' && $review->user_id != Auth::user()->id)
                                                                 @if($i != 0) <hr> @endif
                                                                 <!-- {{ ++$i }} -->
                                                                 <li class="media">
-                                                                    <img class="m-r-15" @if($review->responder) src="{{ asset('files/profile/images/' . (App\User::where('id',$review->responder)->get()->first())->profile_image) }}" @else src="{{ asset('files/profile/images/profile.jpg') }}" @endif width="60" alt="Generic placeholder image">
+                                                                    <img class="m-r-15" @if($review->user_id) src="{{ asset('files/profile/images/' . (App\User::where('id',$review->user_id)->get()->first())->profile_image) }}" @else src="{{ asset('files/profile/images/profile.jpg') }}" @endif width="60" alt="Generic placeholder image">
                                                                     <div class="media-body">
-                                                                        <h5 class="mt-0 mb-1">@if($review->responder) {{ (App\User::where('id',$review->responder)->get()->first())->name }} @else Anonymous @endif </h5> 
-                                                                        {{ $review->review }} <br>
+                                                                        <h5 class="mt-0 mb-1">@if($review->user_id) {{ (App\User::where('id',$review->user_id)->get()->first())->name }} @else Anonymous @endif </h5> 
+                                                                        {{ $review->review_message }} <br>
                                                                         {{ $review->created_at }} 
                                                                         @role(['super-admin','admin']) - 
                                                                             @if($review->status == 'Approved')
@@ -214,7 +221,7 @@
                                                                                 <input type="radio" name="rate_number" class="flat-red" value="5" title="5 Stars, Very Satsfied!"> 5 Stars
                                                                             </label> 
                                                                         --}}
-                                                                        <input id="input-3" name="rate_number" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="5">
+                                                                        <input id="input-3" name="rate_number" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="2.5">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
