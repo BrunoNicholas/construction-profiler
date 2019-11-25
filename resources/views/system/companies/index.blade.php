@@ -33,6 +33,18 @@
                       @endif
                       
                       @foreach($companies as $company)
+                          <!--<?php
+                              $total_ratings  = $company->ratings->count();
+                              $avg_avs     = 0;
+                              if ($total_ratings > 0) {
+                                      foreach ($company->ratings as $rat) {
+                                      $avg_avs += $rat->rate_number;
+                                  }
+                                  $avg    = $avg_avs/$total_ratings;
+                              } else {
+                                  $avg    = $avg_avs;
+                              }
+                          ?>-->
                           <div class="col-md-6 pt-2">
                               <div class="row" onclick="window.location='{{ route('companies.show', $company->id) }}'" title="Click to view company details">
                                   <div class="col-md-7">
@@ -54,23 +66,23 @@
                                       <table class="table table-bordered table-striped">
                                           <tbody>
                                               <tr>
-                                                  <td><h5 class="font-normal text-center"> {{ $company->company_name }} </h5></td>
+                                                  <td colspan="2"><h5 class="font-normal text-center"> {{ $company->company_name }} </h5></td>
                                               </tr>
                                               <tr>
-                                                  <td>{{ $company->company_email }}</td>
+                                                  <td colspan="2">{{ $company->company_email }}</td>
                                               </tr>
                                               <tr>
-                                                  <td>{{ $company->company_bio }}</td>
+                                                  <td colspan="2">{{ $company->company_bio }}</td>
                                               </tr>
                                               <tr>
-                                                  <td style="">{{ $company->status }}</td>
+                                                  <td style="" colspan="2">{{ $company->status }}</td>
                                               </tr>
-                                                <tr>
-                                                    @if(sizeof($company->reviews) > 0)
+                                              <tr>
+                                                  @if(sizeof($company->reviews) > 0)
                                                       <td class="text-info">{{ $company->reviews->count() }} Reviews</td>
-                                                    @endif
-                                                    <td class="text-danger">{{ $company->ratings->count() }} Stars</td>
-                                                </tr>
+                                                  @endif
+                                                  <td class="text-danger" @if(sizeof($company->reviews) < 1) colpan="2" @endif>{{ $avg }} Stars</td>
+                                              </tr>
                                           </tbody>
                                       </table>
                                   </div>
