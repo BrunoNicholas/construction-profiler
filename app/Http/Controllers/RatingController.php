@@ -60,7 +60,8 @@ class RatingController extends Controller
     public function store(Request $request)
     {
         request()->validate([
-            'rate_number'  => 'required',
+            'user_id'       => 'required',
+            'rate_number'   => 'required',
         ]);
         Rating::create($request->all());
 
@@ -73,7 +74,7 @@ class RatingController extends Controller
      * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function show(Rating $rating)
+    public function show($id)
     {
         //
     }
@@ -84,7 +85,7 @@ class RatingController extends Controller
      * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rating $rating)
+    public function edit($id)
     {
         //
     }
@@ -96,9 +97,14 @@ class RatingController extends Controller
      * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rating $rating)
+    public function update(Request $request, $id)
     {
-        //
+        request()->validate([
+            'user_id'       => 'required',
+            'rate_number'   => 'required',
+        ]);
+
+        
     }
 
     /**
@@ -107,7 +113,7 @@ class RatingController extends Controller
      * @param  \App\Models\Rating  $rating
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rating $rating)
+    public function destroy($id)
     {
         $item = Review::find($id);
         $item->delete();

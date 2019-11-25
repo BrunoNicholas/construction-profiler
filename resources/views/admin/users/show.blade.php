@@ -204,16 +204,16 @@
                             @role(['super-admin','admin'])
                             <div class="col-md-12">
                                 <div class="row">
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <a href="{{ route('users.index') }}" class="btn btn-primary btn-block"> Back </a>
                                     </div>
-                                    <div class="col-6">
+                                    <div class="col-md-6">
                                         <form method="POST" action="{{ route('users.destroy', $user->id) }}">
                                             {{ csrf_field() }}
                                             {{ method_field('DELETE') }}
                                             <div class="tools">
                                                 <button type="submit" class="btn btn-danger btn-block"
-                                                    @if($user->id == Auth::user()->id) disabled @elseif($user->role == 'super-admin') disabled @endif onclick="return confirm('You are about to delete!\nThis is not reversible!')" title="You can not delete your profile"> Delete </button>
+                                                    @if($user->id == Auth::user()->id) disabled @elseif($user->role == 'super-admin') disabled @endif onclick="return confirm('You are about to delete!\nThis is not reversible!')" title="You can not delete your profile"><i class="fa-trash fa"></i> Delete </button>
                                             </div>
                                         </form>
                                     </div>
