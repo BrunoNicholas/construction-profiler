@@ -2,7 +2,12 @@
 
 @section('title') View Company @endsection
 @section('styles')
-<link rel="stylesheet" href="{{ asset('assets/plugins/iCheck/all.css') }}">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    {{-- above is the rating --}}
+    <link rel="stylesheet" href="{{ asset('assets/plugins/iCheck/all.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/bower_components/select2/dist/css/select2.min.css') }}">
 @endsection 
@@ -173,31 +178,35 @@
                                             </div>
                                             <div class="col-md-12">
                                                 <div class="box">
+                                                    <div class="box-header text-center"> Make Review & Rating </div>
                                                     <div class="box-body">
                                                         <form method="post" action="{{ route('reviews.store', ['company',$company->id]) }}">
                                                             @csrf
                                                             <div class="row">
                                                                 <div class="col-md-6" style="padding-top: 20px;">
                                                                     <div class="form-group">
-                                                                        <label>
-                                                                            0 Stars
-                                                                            <input type="radio" name="rate_number" class="flat-red" value="0" title="No star, not interested">
-                                                                        </label>
-                                                                        <label>
-                                                                            <input type="radio" name="rate_number" class="flat-red" value="1" title="1 Star, not satisfied">
-                                                                        </label>
-                                                                        <label>
-                                                                            <input type="radio" name="rate_number" class="flat-red" value="2" title="2 Stars, fairly satisfied" checked>
-                                                                        </label>
-                                                                        <label>
-                                                                            <input type="radio" name="rate_number" class="flat-red" value="3" title="3 Stars, moderately satisfied">
-                                                                        </label>
-                                                                        <label>
-                                                                            <input type="radio" name="rate_number" class="flat-red" value="4" title="4 Stars, satisfied!">
-                                                                        </label>
-                                                                        <label>
-                                                                            <input type="radio" name="rate_number" class="flat-red" value="5" title="5 Stars, Very Satsfied!"> 5 Stars
-                                                                        </label>
+                                                                        {{-- 
+                                                                            <label>
+                                                                                0 Stars
+                                                                                <input type="radio" name="rate_number" class="flat-red" value="0" title="No star, not interested">
+                                                                            </label>
+                                                                            <label>
+                                                                                <input type="radio" name="rate_number" class="flat-red" value="1" title="1 Star, not satisfied">
+                                                                            </label>
+                                                                            <label>
+                                                                                <input type="radio" name="rate_number" class="flat-red" value="2" title="2 Stars, fairly satisfied" checked>
+                                                                            </label>
+                                                                            <label>
+                                                                                <input type="radio" name="rate_number" class="flat-red" value="3" title="3 Stars, moderately satisfied">
+                                                                            </label>
+                                                                            <label>
+                                                                                <input type="radio" name="rate_number" class="flat-red" value="4" title="4 Stars, satisfied!">
+                                                                            </label>
+                                                                            <label>
+                                                                                <input type="radio" name="rate_number" class="flat-red" value="5" title="5 Stars, Very Satsfied!"> 5 Stars
+                                                                            </label> 
+                                                                        --}}
+                                                                        <input id="input-3" name="rate_number" class="rating rating-loading" data-min="0" data-max="5" data-step="0.1" value="5">
                                                                     </div>
                                                                 </div>
                                                                 <div class="col-md-6">
@@ -274,6 +283,7 @@
     <script src="{{ asset('assets/plugins/input-mask/jquery.inputmask.extensions.js') }}"></script>
     <script src="{{ asset('assets/bower_components/moment/min/moment.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/iCheck/icheck.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/js/script.js') }}"></script>
     <script>
         //iCheck for checkbox and radio inputs
         $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
