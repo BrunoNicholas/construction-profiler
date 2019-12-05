@@ -117,6 +117,6 @@ class RatingController extends Controller
     {
         $item = Rating::find($id);
         $item->delete();
-        return back()->with('danger', 'Reviews deleted successfully!');
+        return back()->with('danger', 'Rating deleted successfully!');
     }
 }
