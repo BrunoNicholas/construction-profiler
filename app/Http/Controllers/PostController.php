@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Post;
-use App\Models\Project;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
@@ -25,7 +24,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::latest()->paginate(20);
         return view('system.posts.index', compact(['posts']));
     }
 
@@ -36,8 +35,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        $projects = Project::all();
-        return view('system.posts.create',compact(['projects','']));
+        $posts = Post::latest()->paginate(5);
+        return view('system.posts.create',compact(['posts','']));
     }
 
     /**
@@ -79,11 +78,10 @@ class PostController extends Controller
     public function edit($id)
     {
         $post = Post::find($id);
-        $projects = Project::all();
         if (!$post) {
             return redirect()->route('posts.index')->with('danger', 'Post Not Found!');
         }
-        return view('system.posts.edit', compact(['post','projects']));
+        return view('system.posts.edit', compact(['post']));
     }
 
     /**

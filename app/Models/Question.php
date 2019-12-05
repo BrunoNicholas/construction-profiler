@@ -20,7 +20,7 @@ class Question extends Model
         'project_id',
         'topic',
         'description',
-        'asked_by',
+        'user_id',
         'responder',
         'response',
         'status',
